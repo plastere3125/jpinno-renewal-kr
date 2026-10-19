@@ -1,0 +1,223 @@
+@import "tailwindcss";
+
+/* CI 색상: 기존 jpinno.com 테마 변수(--main-color #2b2f84, --main-color2 #2ba8e0) 그대로 사용 */
+@theme {
+  --color-navy: #2b2f84;
+  --color-navy-700: #22266b;
+  --color-sky: #2ba8e0;
+  --color-sky-600: #1d8fc2;
+  --color-ink: #0f1222;
+  --color-deep: #0d1124;
+  --color-deep-2: #161b31;
+  --color-muted: #646979;
+  --color-line: #e7e9ef;
+  --color-mist: #f6f7f9;
+  --font-sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+}
+
+:root {
+  --header-h: 72px;
+}
+@media (min-width: 1024px) {
+  :root {
+    --header-h: 84px;
+  }
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: calc(var(--header-h) + 16px);
+}
+body {
+  font-family: var(--font-sans);
+  color: var(--color-ink);
+  background: #fff;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  width: 100%;
+  max-width: 1320px;
+  margin-inline: auto;
+  padding-inline: 16px;
+}
+@media (min-width: 640px) {
+  .wrap {
+    padding-inline: 24px;
+  }
+}
+@media (min-width: 1024px) {
+  .wrap {
+    padding-inline: 40px;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-sky);
+  outline-offset: 2px;
+}
+
+.skip-link {
+  position: absolute;
+  left: 8px;
+  top: -48px;
+  z-index: 100;
+  background: var(--color-navy);
+  color: #fff;
+  padding: 10px 14px;
+  font-size: 14px;
+}
+.skip-link:focus {
+  top: 8px;
+}
+
+/* 본문 리치텍스트 */
+.prose-ko p + p {
+  margin-top: 1em;
+}
+
+/* 표: 모바일 가로 스크롤 (페이지 자체 가로 넘침 방지) */
+.table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+/* ───────── 시안별 공통 토큰 */
+[data-concept="concept-a"] {
+  --c-radius: 2px;
+  --c-heading: var(--color-ink);
+  --c-eyebrow: var(--color-navy);
+  --c-alt: var(--color-mist);
+}
+[data-concept="concept-b"] {
+  --c-radius: 0px;
+  --c-heading: var(--color-ink);
+  --c-eyebrow: var(--color-sky-600);
+  --c-alt: #f3f4f7;
+}
+
+/* ───────── 타이포그래피: 제목은 600, 좁은 자간, 잉크 컬러. 네이비는 포인트에만 */
+.eyebrow {
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--c-eyebrow, var(--color-navy));
+}
+.t-display {
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1.2;
+}
+.t-section {
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1.28;
+}
+@media (min-width: 1024px) {
+  .t-section {
+    font-size: 40px;
+  }
+}
+.t-lead {
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--color-muted);
+}
+@media (min-width: 1024px) {
+  .t-lead {
+    font-size: 17px;
+  }
+}
+
+/* 텍스트 링크 + 화살표 이동 */
+.link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14.5px;
+  font-weight: 500;
+  padding-bottom: 4px;
+  border-bottom: 1px solid currentColor;
+}
+.link-arrow svg {
+  transition: transform 0.25s ease;
+}
+.link-arrow:hover svg,
+.group:hover .link-arrow svg {
+  transform: translateX(4px);
+}
+
+/* 톤 통일 이미지(스톡 배경을 그레이스케일 + 네이비 톤으로) */
+/* 위치 지정은 사용처에서(relative/absolute 클래스) */
+.tone {
+  isolation: isolate;
+  overflow: hidden;
+  background: #0d1124;
+}
+.tone > img {
+  filter: grayscale(1) contrast(1.05) brightness(0.85);
+  transition: filter 0.7s ease, transform 0.7s ease;
+}
+.tone::after {
+  transition: opacity 0.7s ease;
+}
+/* 마우스 오버 시 원색 복원 */
+.group:hover .tone-hover > img {
+  filter: none;
+  transform: scale(1.03);
+}
+.group:hover .tone-hover::after {
+  opacity: 0;
+}
+.tone::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #1f2a6b;
+  mix-blend-mode: color;
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.hairline-t {
+  border-top: 1px solid var(--color-line);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ───────── 모션: 스크롤 진입 시 나타남 (JS 활성 시에만 숨김 → 실패해도 내용 보임) */
+.js [data-reveal] {
+  opacity: 0;
+  transform: translate3d(0, 28px, 0);
+  transition: opacity 0.9s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: var(--d, 0ms);
+}
+.js [data-reveal].is-in {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .js [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
