@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRef, useState } from "react";
 import { PRODUCT_CATEGORIES, PRODUCTS } from "@/content/ko/products";
 import { href, img } from "@/lib/site";
-import { ArrowRight, ChevronLeft, ChevronRight } from "@/components/shared/Icons";
+import { ChevronLeft, ChevronRight } from "@/components/shared/Icons";
 
 /** 시안 A 대표 제품: 분류 필터 + 가로 슬라이드(스크롤 스냅) */
 export default function ProductRailA() {
@@ -64,7 +64,6 @@ export default function ProductRailA() {
                     <h3 className="text-[19px] font-semibold tracking-[-0.03em] text-ink">{p.name}</h3>
                     <p className="mt-1 text-[13px] text-muted">{p.nameEn}</p>
                   </div>
-                  <ArrowRight className="mt-1.5 size-4 text-ink/30 transition-all duration-300 group-hover:translate-x-1 group-hover:text-navy" />
                 </div>
               </Link>
             </li>

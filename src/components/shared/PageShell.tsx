@@ -23,12 +23,12 @@ const SECTION_SLOGAN: Record<string, string> = {
 
 const SECTION_VISUAL: Record<string, string> = {
   company: "equipment/greeting-fixed-img.jpg",
-  products: "video/company-film.jpg",
-  tech: "visual/sub-business-epc-bg.jpg",
-  news: "visual/sub-business-bg04.jpg",
-  support: "visual/sub-business-bg03.jpg",
-  privacy: "visual/sub-business-bg03.jpg",
-  sitemap: "visual/sub-business-bg03.jpg",
+  products: "visual/real-plant.jpg",
+  tech: "visual/real-epc.jpg",
+  news: "visual/real-office.jpg",
+  support: "visual/real-lab-entrance.jpg",
+  privacy: "visual/real-lab-entrance.jpg",
+  sitemap: "visual/real-lab-entrance.jpg",
 };
 
 type Props = {
@@ -103,7 +103,7 @@ export default function PageShell({ concept, section, current, title, trail = []
       </nav>
     ) : null;
 
-  const v = visual ?? SECTION_VISUAL[section] ?? "visual/sub-business-bg03.jpg";
+  const v = visual ?? SECTION_VISUAL[section] ?? "visual/real-lab-entrance.jpg";
   const slogan = lead ?? SECTION_SLOGAN[section];
 
   if (concept === "concept-b") {
@@ -140,21 +140,22 @@ export default function PageShell({ concept, section, current, title, trail = []
       <section className="bg-white">
         <div className="wrap pt-8 lg:pt-10">
           {renderCrumbs()}
-          <div className="relative isolate mt-6 flex min-h-[340px] flex-col justify-end overflow-hidden rounded-[6px] bg-deep p-6 text-white sm:p-10 lg:mt-8 lg:min-h-[440px] lg:p-14">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={img(v)} alt="" className="absolute inset-0 -z-10 size-full object-cover" />
-            <div className="absolute inset-0 -z-10 bg-[linear-gradient(100deg,rgba(15,18,34,0.82)_0%,rgba(15,18,34,0.45)_55%,rgba(15,18,34,0.1)_100%)]" />
-            <p className="eyebrow !text-white/70" data-reveal>
-              {en}
-            </p>
-            <h1 className="t-display mt-3 text-[38px] lg:text-[60px]" data-reveal style={{ ["--d" as string]: "80ms" }}>
-              {title}
-            </h1>
-            {slogan && (
-              <p className="mt-4 max-w-[640px] text-[16px] leading-relaxed text-white/80 lg:text-[19px]" data-reveal style={{ ["--d" as string]: "160ms" }}>
-                {slogan}
-              </p>
-            )}
+          {/* 카탈로그(260323) 제품·사업 페이지의 파란 세로 패널 + 큰 흰 제목을 웹 상단에 적용. 사진은 원색 그대로 */}
+          <div className="mt-6 grid overflow-hidden rounded-[6px] lg:mt-8 lg:min-h-[440px] lg:grid-cols-[minmax(340px,36%)_1fr]">
+            <div className="relative flex flex-col justify-between gap-10 bg-sky p-7 text-white sm:p-10 lg:p-12">
+              <h1 className="text-[38px] font-bold leading-[1.15] tracking-[-0.04em] [word-break:keep-all] lg:text-[54px]" data-reveal>
+                {title}
+              </h1>
+              {slogan && (
+                <p className="max-w-[420px] text-[15.5px] leading-relaxed text-white/90 lg:text-[17px]" data-reveal style={{ ["--d" as string]: "120ms" }}>
+                  {slogan}
+                </p>
+              )}
+            </div>
+            <div className="relative aspect-[16/9] bg-mist lg:aspect-auto">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={img(v)} alt="" className="absolute inset-0 size-full object-cover" />
+            </div>
           </div>
         </div>
       </section>
@@ -168,7 +169,7 @@ export default function PageShell({ concept, section, current, title, trail = []
 export function SectionTitle({ eyebrow, title, desc, center }: { eyebrow?: string; title: string; desc?: string; center?: boolean }) {
   return (
     <div className={center ? "mx-auto max-w-[760px] text-center" : "max-w-[760px]"}>
-      {eyebrow && <p className="eyebrow">{eyebrow}</p>}
+      {eyebrow && <p className="eyebrow sub-eyebrow">{eyebrow}</p>}
       <h2 className="mt-3 text-[24px] font-semibold leading-snug tracking-[-0.03em] text-[var(--c-heading)] lg:text-[32px]">{title}</h2>
       {desc && <p className="t-lead mt-4">{desc}</p>}
     </div>

@@ -14,7 +14,7 @@ export function CategoryView({ concept, c }: { concept: Concept; c: ProductCateg
       <section className={sec}>
         <div className="flex flex-col gap-4 border-b border-line pb-8 lg:flex-row lg:items-end lg:justify-between">
           <div>
-            <p className="text-[13px] font-semibold uppercase tracking-[0.16em] text-[var(--c-eyebrow)]">{c.nameEn}</p>
+            <p className="sub-eyebrow text-[13px] font-semibold uppercase tracking-[0.16em] text-[var(--c-eyebrow)]">{c.nameEn}</p>
             <h2 className="mt-2 text-[26px] font-semibold text-[var(--c-heading)] lg:text-[32px]">{c.name}</h2>
           </div>
           <p className="max-w-[620px] text-[15.5px] leading-relaxed text-muted lg:text-right">{c.summary}</p>

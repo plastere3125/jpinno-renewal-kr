@@ -2,8 +2,10 @@ import type { Business } from "@/lib/types";
 
 /**
  * 출처: https://jpinno.com/business/* , 메인 요약은 https://jpinno.com/ 사업분야 섹션
- * 순서: 기존 사이트 메뉴 순서와 A안 순서가 동일(EPC → 이차전지 → 화장품 → 제약·바이오 → 전자소재 → 건설산업)
+ * 순서: EPC → 이차전지 → 화장품 → 제약·바이오 → 전자소재 → 석유화학 → 건설산업
  * 명백한 오탈자 수정 내역은 내부 확인 목록에 기록
+ * 2026-10-30 클라이언트 회신: 제품 '석유화학 플랜트'를 사업분야 '석유화학'으로 이동(전자소재와 건설산업 사이).
+ *   문구는 기존 석유화학 플랜트 제품 페이지 + 260323 카탈로그 10쪽(Gas & Petrochemical Plant) 원문
  */
 export const BUSINESSES: Business[] = [
   {
@@ -20,9 +22,9 @@ export const BUSINESSES: Business[] = [
       "그리고 지금도 이차전지, 반도체/전자소재, 제약, 바이오, 정밀화학, 석유화학 분야 등 다양한 분야에서 기술을 통한 Engineering Solution을 통한 공정 혁신을 이뤄내고 있습니다.",
       "이제 JP 이노베이션과 함께 꿈꾸던 공정을 현실로 바꿔보십시오.",
     ],
-    visual: "visual/sub-business-epc-bg.jpg",
+    visual: "visual/real-epc.jpg",
     portrait: "visual/sec01-bg01.jpg",
-    relatedProducts: ["reactor", "filter", "dryer", "mixer-mill", "industrial-machinery"],
+    relatedProducts: ["reactor", "filter", "dryer", "mixer", "milling"],
   },
   {
     slug: "secondary-battery",
@@ -35,12 +37,12 @@ export const BUSINESSES: Business[] = [
     ],
     intro: [
       "여러제조산업에서 앞선 기술력을 선보이고, 그 품질을 인정 받고 있는 JP 이노베이션은 이차전지 분야에서도 새롭게 주목을 받고 있습니다. 어느 분야보다도 다양하고 정밀한 기술을 요구하는 이차전지 분야에서도 고객이 만족 이상의 가치를 누릴 수 있는 완벽한 설계와 제작으로 그 입지를 넓혀가고 있습니다.",
-      "JP 이노베이션은 PD MIXER 나 BINDER MIXER 등 이차전지 공정의 양극재 및 음극재 믹싱장비를 포함하여 각종 스토리지탱크, 믹싱 제조시설, 엔지니어링 설계까지 폭넓은 분야의 공정을 완성할 수 있는 최고의 기술력을 보유하고 있습니다.",
+      "JP 이노베이션은 PDH-MIXER 나 BINDER MIXER 등 이차전지 공정의 양극재 및 음극재 믹싱장비를 포함하여 각종 스토리지탱크, 믹싱 제조시설, 엔지니어링 설계까지 폭넓은 분야의 공정을 완성할 수 있는 최고의 기술력을 보유하고 있습니다.",
       "현재 GLOBAL 고객사 및 국내 유수의 전문기업들과의 사업 협업을 통한 다수의 PROJECT를 수행하였으며, 그 기술력을 인정 받고 있습니다.",
     ],
-    visual: "visual/sub-business-bg01.jpg",
+    visual: "visual/real-battery.jpg",
     portrait: "visual/sec01-bg02.jpg",
-    relatedProducts: ["mixer-mill", "reactor"],
+    relatedProducts: ["mixer", "milling", "reactor"],
   },
   {
     slug: "cosmetics",
@@ -54,9 +56,9 @@ export const BUSINESSES: Business[] = [
       "전세계적으로 많은 관심을 받으며 지속적으로 성장 하고 있는 화장품 산업은 JP 이노베이션의 성장 동력이라고할 수 있습니다. 저희는 창립 이래로 수많은 화장품 제조 공정에 솔루션을 제공하며 그 기술력과 노하우를 축적해 왔습니다. 화장품 제조 공정에는 여러가지 주요 공정들이 있지만, 제형 안정성(크림의 분리 방지, 로션의 점도 유지 등)이나 색조, 질감 등 화장품의 최종 품질을 결정 짓는 혼합 및 용해, 반응 과정이 가장 핵심적이라고 할 수 있습니다.",
       "JP 이노베이션은 화장품 공정의 혼합 및 용해, 반응에 주로 사용되는 믹서(Mixer), 반응기(Reactor), 여과기 (Filter), 건조기(Dryer) 등을 제작하고 있으며 각각의 해당 공정의 특성에 따라 반응기의 재질, 특수한 기능과 메커니즘을 반영하여 독특하고 효율적인 장비를 제안, 적용하고 있습니다. 더 나아가 고객의 공정에 맞게 플랜트의 설계 건설까지 수행하는 EPC (Engineering Procurement Construction-Turn Key방식) 전문회사로 더욱 폭넓은 솔루션을 제공하고 있습니다.",
     ],
-    visual: "visual/sub-cosmo-bg.jpg",
+    visual: "visual/real-cosmetics.jpg",
     portrait: "visual/sec01-bg03.jpg",
-    relatedProducts: ["mixer-mill", "reactor", "filter", "dryer"],
+    relatedProducts: ["mixer", "milling", "reactor", "filter", "dryer"],
   },
   {
     slug: "pharma-bio",
@@ -71,7 +73,7 @@ export const BUSINESSES: Business[] = [
       "제약, 바이오 산업은 그 어떤 산업보다 까다롭고 정밀하며, 고도의 전문성을 요구하는 산업입니다. 생산 공정에서도 품질 일관성, 무균성, 규제 준수(FDA, EMA, GMP등)가 필수 적이며, 이를 위해 특수한 설비·공정 관리가 요구됩니다.",
       "JP 이노베이션은 파일롯 생산 장비부터 대량 생산용까지 다양한 스케일의 장비를 보유하고 있으며, 제약, 바이오 산업에서 주로 진행 하는 합성, 반응, 정제, 건조 공정에 필요한 모든 엔지니어링과 장비 구축 가능합니다. 또한 풍부한 설계, 납품 이력과 경험을 바탕으로 고객이 원하는 공정의 제안, 시스템 구축, 플랜트 건설까지 수행 할 수 있으며 제약 바이오산업의 필수 요소인 GMP준수, 무균 청정 관리, 밸리데이션(Validation) 등도 원활하게 제공해 드립니다. 이처럼 JP 이노베이션은 다방면의 혁신적인 공정 개선으로 제약 바이오산업에서의 경쟁력을 높여드립니다.",
     ],
-    visual: "visual/sub-bio-bg.jpg",
+    visual: "visual/real-pharma.jpg",
     portrait: "visual/sec01-bg04.jpg",
     relatedProducts: ["reactor", "filter", "dryer"],
   },
@@ -89,9 +91,24 @@ export const BUSINESSES: Business[] = [
       "어떤 산업보다도 정밀하고 순도높은 재료 생산이 요구되는 전자재료 생산 공정은 반드시 전문 업체의 솔루션과 시공이 필요합니다.",
       "JP 이노베이션은 전자재료 생산 공정에 주로 사용되는 여러 소재의 반응기(Reactor), 다양한 형태의 여과기 (Filter), 건조기(Dryer) 등을 제작하고 있으며, 국내 및 Global 고객사와 지속적인 사업 협업을 통한 다수의 Projects를 수행하고 있습니다.",
     ],
-    visual: "visual/sub-business-bg04.jpg",
+    visual: "visual/real-electronic.jpg",
     portrait: "visual/sec01-bg06.jpg",
     relatedProducts: ["reactor", "filter", "dryer"],
+  },
+  {
+    slug: "petrochemical",
+    name: "석유화학",
+    nameEn: "Gas & Petrochemical Plant",
+    summary: [
+      "Gas, Petrol Chemical, Oil Refinery Plant EPC기반 엔지니어링 설계, 장비제작, 시공 및 사업관리",
+      "베트남 등 해외법인 설립, 해외시장 진출 및 사업 진행",
+    ],
+    intro: [
+      "Gas, Petrol Chemical, Oil Refinery Plant 현장에서 EPC기반 엔지니어링 설계 장비제작 시공 및 사업관리를 수행하고 있으며 특히 베트남 등 해외법인을 설립, 해외시장에 적극적으로 진출, 사업 진행하고 있습니다.",
+    ],
+    visual: "visual/sub-petro-bg.jpg",
+    portrait: "visual/sec01-petro.jpg",
+    relatedProducts: [],
   },
   {
     slug: "construction",
@@ -106,7 +123,7 @@ export const BUSINESSES: Business[] = [
       "그 결과 이차전지, 반도체, 전자소재, 제약, 바이오, 정밀화학, 석유화학 분야 등 국내외 다양한 업체의 PLANT 건설 실적을 보유하게 되었습니다.",
       "이제 JP 이노베이션을 통해 엔지니어링 및 PLANT설계, 시공, 건설 수행까지 고객이 필요한 공정의 모든 것을 한번에 해결 할 수 있습니다.",
     ],
-    visual: "visual/sub-business-bg03.jpg",
+    visual: "visual/real-construction.jpg",
     portrait: "visual/sec01-bg05.jpg",
     relatedProducts: [],
   },
@@ -172,6 +189,9 @@ export const PROCESS_IMAGES: Record<string, { title: string; image: string }> = 
   "secondary-battery": { title: "이차 전지 MIXING PROCESS - JPI SCOPE", image: "business/hd/battery-process.jpg" },
   cosmetics: { title: "화장품원료 생산 공정 - JPI SCOPE", image: "business/hd/cosmo-flow.jpg" },
 };
+
+/** 석유화학 사업 주요 제품(기존 석유화학 플랜트 페이지·카탈로그 10쪽) */
+export const PETRO_PRODUCTS = ["Heat Exchanger", "Pressure Vessel", "Storage Tank", "Reactor", "Drum", "Cooler"];
 
 export const PHARMA_TABLE = {
   columns: ["구분", "제약 (화학 의약품)", "바이오 (바이오 의약품)"],

@@ -98,6 +98,10 @@ body {
   --c-eyebrow: var(--color-navy);
   --c-alt: var(--color-mist);
 }
+/* 시안 A: 서브 페이지 영문 소제목은 쓰지 않음(홈 주요 섹션에만 사용) */
+[data-concept="concept-a"] .sub-eyebrow {
+  display: none;
+}
 [data-concept="concept-b"] {
   --c-radius: 0px;
   --c-heading: var(--color-ink);

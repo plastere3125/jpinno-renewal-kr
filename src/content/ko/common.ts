@@ -5,6 +5,7 @@ import type { NavItem } from "@/lib/types";
  * 구조 근거: 2026-10-12 구조도 A안 + 2026-10-19 클라이언트 회신
  *  - 기술·실적 > '기술 및 연구개발' 숨김 (HIDDEN_NAV 참고, 공개 메뉴·사이트맵·홈에서 제외)
  *  - 홍보센터: 새소식·뉴스레터·홍보자료 하위 메뉴 없이 통합 카드 목록 1개
+ *  - 2026-10-30 클라이언트 회신: 제품 카테고리 믹서 / 밀링·리파이너 분리, 산업기기 폐지, 사업분야에 석유화학 추가
  */
 export const NAV: NavItem[] = [
   {
@@ -30,6 +31,7 @@ export const NAV: NavItem[] = [
       { key: "cosmetics", label: "화장품", path: "business/cosmetics" },
       { key: "pharma-bio", label: "제약·바이오", path: "business/pharma-bio" },
       { key: "electronic-materials", label: "전자소재", path: "business/electronic-materials" },
+      { key: "petrochemical", label: "석유화학", path: "business/petrochemical" },
       { key: "construction", label: "건설산업", path: "business/construction" },
     ],
   },
@@ -41,8 +43,8 @@ export const NAV: NavItem[] = [
       { key: "reactor", label: "반응기", path: "products/reactor" },
       { key: "filter", label: "여과기", path: "products/filter" },
       { key: "dryer", label: "건조기", path: "products/dryer" },
-      { key: "mixer-mill", label: "믹서·분쇄기", path: "products/mixer-mill" },
-      { key: "industrial-machinery", label: "산업기기", path: "products/industrial-machinery" },
+      { key: "mixer", label: "믹서", path: "products/mixer" },
+      { key: "milling", label: "밀링·리파이너", path: "products/milling" },
     ],
   },
   {

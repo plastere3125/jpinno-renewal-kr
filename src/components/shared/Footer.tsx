@@ -77,12 +77,6 @@ export default function Footer({ concept }: { concept: Concept }) {
                 </Link>
               </li>
             ))}
-            <li>
-              <Link href="/" className={`inline-flex items-center gap-1 ${t.link}`}>
-                시안 선택
-                <ArrowUpRight className="size-3.5" />
-              </Link>
-            </li>
           </ul>
         </div>
       </div>

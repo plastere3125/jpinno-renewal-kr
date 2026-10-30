@@ -8,6 +8,12 @@ import type { Product, ProductCategory } from "@/lib/types";
  *  - 제품 사진·도면: 홈페이지용/제품이미지(고해상도 원본, 도면은 기술팀 표준화 이미지)
  *  - 스펙 수치: 홈페이지용/제품이미지/스펙관련/표준사양정리_기술팀.docx 기준으로 대조·수정
  *    (JPIRE-07T 용량, JPINF-50 H, JPIFD-45 H, 필터리액터·필터드라이어 부피 단위 m³)
+ * 2026-10-30 클라이언트 회신(카테고리 개편)
+ *  - '믹서·분쇄기'·'산업기기' → '믹서', '밀링·리파이너' 로 재편. 산업기기 폐지
+ *  - PD MIXER → PDH-MIXER(Planetary Disper Homo Mixer) 명칭 변경, V형 믹서는 믹서로 이동
+ *  - 석유화학 플랜트는 사업분야 '석유화학'으로 이동(business.ts)
+ *  - 신규 제품(나우다 믹서·아지호모믹서·리파이너) 문구·용도: 260323 카탈로그 24P(국문) 17·21쪽 원문
+ *  - '믹서' 카테고리 요약은 카탈로그 제품 설명을 바탕으로 작성(원문 없음, 내부 확인 목록)
  */
 export const PRODUCT_CATEGORIES: ProductCategory[] = [
   {
@@ -32,18 +38,18 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
     image: "products/hd/fd.webp",
   },
   {
-    slug: "mixer-mill",
-    name: "믹서·분쇄기",
-    nameEn: "Mixer & Mill",
-    summary: "강력한 분쇄력과 뛰어난 성능으로 많은 생산 현장에서 각광 받고 있는 고성능 분쇄기입니다.",
+    slug: "mixer",
+    name: "믹서",
+    nameEn: "Mixer",
+    summary: "고점도 슬러리부터 분체·유화 공정까지, 공정과 물성에 맞는 방식으로 균일한 혼합을 구현하는 믹싱 장비입니다.",
     image: "products/hd/pd.webp",
   },
   {
-    slug: "industrial-machinery",
-    name: "산업기기",
-    nameEn: "Industrial Machinery",
-    summary: "기타 산업 현장에서 쓰이는 여러 형태의 열교환기, 압력용기, 저장탱크 등의 장비도 제작 가능합니다.",
-    image: "products/hd/v-type.webp",
+    slug: "milling",
+    name: "밀링·리파이너",
+    nameEn: "Milling & Refiner",
+    summary: "강력한 분쇄력과 뛰어난 성능으로 많은 생산 현장에서 각광 받고 있는 고성능 분쇄기입니다.",
+    image: "products/hd/comill.webp",
   },
 ];
 
@@ -332,16 +338,16 @@ export const PRODUCTS: Product[] = [
       { title: "기타분야", text: "제품의 원래 배합하는 공정, pallet의 착색에 적합" },
     ],
   },
-  // ───────── 믹서·분쇄기
+  // ───────── 믹서 (2026-10-30 클라이언트 지정 순서: PDH 믹서 / 아지호모믹서 / V형 믹서 / 나우다믹서)
   {
-    slug: "pd-mixer",
-    category: "mixer-mill",
-    name: "PD 믹서",
-    nameEn: "PD MIXER (Planetary Disper Mixer)",
+    slug: "pdh-mixer",
+    category: "mixer",
+    name: "PDH 믹서",
+    nameEn: "PDH-MIXER (Planetary Disper Homo Mixer)",
     image: "products/hd/pd.webp",
     summary: "공전·자전 교반과 고속 분산을 동시에 진행하는 고효율 믹싱장비",
     intro: [
-      "PD MIXER (Planetary Disper Mixer)는 임펠러가 행성의 공전과 자전을 연상케 하는 운동으로 재료를 혼합하는 믹서입니다.",
+      "PDH-MIXER (Planetary Disper Homo Mixer)는 임펠러가 행성의 공전과 자전을 연상케 하는 운동으로 재료를 혼합하는 믹서입니다.",
       "먼저 메인 회전축의 꽈배기 모양 트위스트 블레이드(Twist blade)가 회전(자전) 하면서 동시에 탱크 중심 주위를 공전하는 독특한 이중 운동으로 용기 내 모든 영역을 빠짐없이 혼합 합니다. 여기에 디스퍼저 블레이드 (Disperser Blade)가 추가되어 고속 분산을 진행하여 분말-액체 혼합 및 응집체 해체를 돕습니다.",
       "즉, 공전, 자전식 교반(저속·고점도 처리)과 고속 분산(분산·해체)이 동시에 이루어져 다양한 점도의 물질을 빠르고 완벽하게 처리 할 수 있는 고효율의 믹싱장비 입니다.",
     ],
@@ -352,7 +358,7 @@ export const PRODUCTS: Product[] = [
     ],
     extraLists: [
       {
-        title: "PD MIXER 옵션",
+        title: "PDH-MIXER 옵션",
         items: [
           "파일럿 생산용부터 생산용 EPC 까지 다양한 스케일의 설계 제조 가능",
           "바인더 믹서(Binder Mixer) 스토리지 탱크(Storage Tank)등 연계 가능 장비 제작 가능.",
@@ -369,8 +375,108 @@ export const PRODUCTS: Product[] = [
     ],
   },
   {
+    slug: "agi-homo-mixer",
+    category: "mixer",
+    name: "아지호모 믹서",
+    nameEn: "Agi-Homo Mixer",
+    image: "products/hd/agi-homo.webp",
+    summary: "아지테이터와 호모게나이저를 결합해 혼합·유화·분산을 한 번에 구현하는 장비",
+    intro: [
+      "아지호모 믹서는 아지테이터(ANCHOR MIXER, PADDLE, ISPERSER 등)와 호모게나이저를 결합해 고점도 물질도 균일하게 혼합하고 미세한 유화·분산까지 구현하는 고성능 장비입니다.",
+      "강력한 전단력과 안정적인 순환 흐름으로 제품 품질을 일정하게 유지하며, 진공·가열·냉각 등 다양한 공정 옵션을 지원합니다. 화장품, 식품, 제약, 화학 산업 전반에서 최적화된 솔루션을 제공합니다.",
+    ],
+    features: [
+      "고점도 물질도 아지테이터의 순환으로 균일하게 혼합되며 Dead zone 발생이 최소화.",
+      "균질화와 동시에 호모게나이저를 통한 강력한 유화, 분산까지 가능.",
+      "Heating / Cooling Jacket 설치로 온도 제어 가능.(옵션)",
+      "진공, 탈포 옵션 장착 가능.",
+      "위생 등급 설계및 CIP 적용이 가능하며, 식품·화장품, 제약 산업기준 충족이 가능.",
+      "연구용 파일럿부터 대규모 양산 플랜트까지 다양한 스케일의 장비 제작이 가능.",
+    ],
+    usesTitle: "용도",
+    uses: [
+      { title: "화장품 산업", text: "크림, 로션, 에센스, 젤, 선크림, 색조 베이스" },
+      { title: "식품 산업", text: "드레싱, 소스, 마요네즈, 음료 베이스" },
+      { title: "제약 / 바이오", text: "연고, 크림 제형, 현탁액(Suspension)" },
+      { title: "화학 산업", text: "코팅액, 수지, 실란트, 고분자 분산" },
+    ],
+  },
+  {
+    slug: "v-type-mixer",
+    category: "mixer",
+    name: "V형 믹서",
+    nameEn: "V-Type Mixer",
+    image: "products/hd/v-type.webp",
+    summary: "V-Type 용기 회전으로 내용물이 3차원 운동을 하는 혼합 장비",
+    intro: ["V-Type의 용기에 내용물을 투입하여 콘 몸체를 회전시키면서 혼합하며 내용물이 3차원 운동을 하는 제품"],
+    features: ["원료의 손실이 없음", "견고하게 제작되어 제약산업에 요구되는 GMP 요구사항에 적합 함"],
+    uses: [
+      { title: "제약분야", text: "의약품" },
+      { title: "화학분야", text: "안료/염료, 액상수지, 마찰제, 세제 원료" },
+      { title: "식품분야", text: "분말스프, 조미료" },
+      { title: "기타분야", text: "과립비료, 농약세제" },
+    ],
+  },
+  {
+    slug: "nauta-mixer",
+    category: "mixer",
+    name: "나우다 믹서",
+    nameEn: "Nauta Mixer",
+    image: "products/hd/nauta.webp",
+    summary: "호퍼형 용기 안에서 수직 스크루의 공전·자전으로 3차원 혼합을 수행하는 장비",
+    intro: [
+      "나우다믹서(Nauta mixer)는 호퍼형(HOPPER)형 용기 내부에서 수직 스크류가 공전 + 자전하며 3차원 혼합을 수행하는 장비입니다.",
+      "고점도 물질이나 부서지기 쉬운 파우더까지 균일하게 섞을 수 있어서 정밀 혼합이 필요한 산업에서 자주 사용되며 다른 믹싱 장비들보다 고효율 혼합을 구현합니다.",
+    ],
+    features: [
+      "저에너지·고효율 혼합, 대형 장비일수록 높은 경제성.",
+      "입자 손상/분진 최소화로 민감 소재에 적합.",
+      "하부 배출시 잔류량이 거의 없어 고가 원료에 유리.",
+      "위생 등급·CIP 지원으로 식품/제약 기준 충족 용이.",
+      "파일럿부터 양산 플랜트까지 다양한 스케일 제작 가능.",
+      "파우더와 파우더, 파우더와 액상 등 다양한 물성 혼합 가능.",
+      "방폭 설계나 진공 혼합 옵션 가능.",
+    ],
+    usesTitle: "용도",
+    uses: [
+      { title: "배터리 소재 산업", text: "양극재, 음극재, 첨가제 균일 혼합, 전구체 처리 공정" },
+      { title: "제약/바이오", text: "API, 부형제 혼합" },
+      { title: "식품 산업", text: "분유, 기능성 파우더, 향미제, 첨가제 혼합" },
+      { title: "화학·정밀화학", text: "촉매, 분체 화학물, 코팅 파우더" },
+      { title: "화장품 원료", text: "파우더 원료, 기능성 성분 혼합" },
+    ],
+  },
+  // ───────── 밀링·리파이너 (리파이너, 코밀, 임팩트밀)
+  {
+    slug: "refiner",
+    category: "milling",
+    name: "리파이너",
+    nameEn: "Refiner",
+    image: "products/hd/refiner.webp",
+    summary: "마이크로스피어 의약품의 후공정을 단일 장비에서 자동으로 수행하는 제약 전용 통합 장비",
+    intro: [
+      "리파이너 (Refiner)는 마이크로스피어 의약품 제조 공정에서 발생하는 세정, 정제, 균질화, 안정화 등 복합적인 후공정을 단일 장비 내에서 자동으로 수행하는 제약 전용 통합 장비입니다.",
+      "리파이너는 마이크로스피어 제조 후 발생하는 입자 크기 편차, 응집, 잔류 용매 및 불순물 문제를 효과적으로 제거하고, 배치 간 품질 재현성을 확보하여 임상·상업 생산까지 안정적인 스케일업이 가능하게 합니다.",
+    ],
+    features: [
+      "마이크로스피어 후공정(세정·정제·균질화)을 하나의 장비로 처리",
+      "잔류 용매, 계면활성제, 미반응 고분자 제거를 통한 입자 표면 안정화",
+      "입자 크기 및 분포 제어를 통해 방출 프로파일 균일성 확보",
+      "레시피 기반 자동 운전으로 배치 재현성 및 공정 추적성 향상",
+      "폐쇄형 시스템 적용으로 오염 및 응집 최소화",
+      "R&D부터 생산용까지 스케일업 가능",
+    ],
+    usesTitle: "용도",
+    uses: [
+      { title: "제약 산업", text: "서방형 주사제, 이식형 약물, 마이크로스피어 기반 의약품" },
+      { title: "바이오", text: "임상용 시료 생산, 공정 개발 및 배치 재현성 검증" },
+      { title: "CDMO / CMO", text: "다품종·소량부터 상업 배치까지의 안정적인 후공정 처리" },
+      { title: "고부가 미립자 공정", text: "균일한 입자 품질과 장기 안정성이 요구되는 미립자 시스템" },
+    ],
+  },
+  {
     slug: "comill",
-    category: "mixer-mill",
+    category: "milling",
     name: "코밀",
     nameEn: "Co-Mill",
     image: "products/hd/comill.webp",
@@ -390,7 +496,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     slug: "impact-mill",
-    category: "mixer-mill",
+    category: "milling",
     name: "임팩트밀",
     nameEn: "Impact Mill",
     image: "products/hd/impact.webp",
@@ -410,37 +516,6 @@ export const PRODUCTS: Product[] = [
       { title: "식품 분야", text: "향신료, 설탕 등" },
       { title: "화학 분야", text: "농업용 비료, 토너, 안료 등" },
     ],
-  },
-  // ───────── 산업기기
-  {
-    slug: "v-type-mixer",
-    category: "industrial-machinery",
-    name: "V형 믹서",
-    nameEn: "V-Type Mixer",
-    image: "products/hd/v-type.webp",
-    summary: "V-Type 용기 회전으로 내용물이 3차원 운동을 하는 혼합 장비",
-    intro: ["V-Type의 용기에 내용물을 투입하여 콘 몸체를 회전시키면서 혼합하며 내용물이 3차원 운동을 하는 제품"],
-    features: ["원료의 손실이 없음", "견고하게 제작되어 제약산업에 요구되는 GMP 요구사항에 적합 함"],
-    uses: [
-      { title: "제약분야", text: "의약품" },
-      { title: "화학분야", text: "안료/염료, 액상수지, 마찰제, 세제 원료" },
-      { title: "식품분야", text: "분말스프, 조미료" },
-      { title: "기타분야", text: "과립비료, 농약세제" },
-    ],
-  },
-  {
-    slug: "petrochemical-plant",
-    category: "industrial-machinery",
-    name: "석유화학 플랜트",
-    nameEn: "Petrochemical Plant",
-    image: "products/gas-petro-plant.png",
-    summary: "가스·석유화학·정유 공장용 EPC 기반 설계·제작·시공",
-    intro: [
-      "JP이노베이션은 가스, 석유화학, 정유 공장 등에 적용 할 수 있는 EPC기반 엔지니어링 설계 장비 제작 시공 및 사업관리를 수행하고있으며, 특히 베트남 등 해외법인을 설립, 해외시장에 적극적으로 진출, 사업 진행하고 있습니다.",
-    ],
-    features: [],
-    usesTitle: "사업 주요 제품",
-    uses: [{ title: "Heat Exchanger" }, { title: "Pressure Vessel" }, { title: "Storage Tank" }, { title: "Reactor" }, { title: "Drum" }, { title: "Cooler" }],
   },
 ];
 

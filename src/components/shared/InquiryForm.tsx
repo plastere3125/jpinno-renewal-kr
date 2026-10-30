@@ -24,7 +24,7 @@ export default function InquiryForm() {
       className="space-y-6"
     >
       <div className="rounded-[var(--c-radius)] border border-sky/40 bg-sky/5 px-4 py-3 text-[14px] leading-relaxed text-ink">
-        <strong className="font-semibold">검토용 시안 안내</strong> · 이 양식은 화면 구성 확인용으로, 입력 내용이 실제로 발송되지 않습니다. 현재 문의는{" "}
+        <strong className="font-semibold">안내</strong> 이 양식은 아직 발송 기능이 연결되지 않아 입력 내용이 전달되지 않습니다. 현재 문의는{" "}
         <a href={`mailto:${COMPANY.email}`} className="font-semibold text-navy underline underline-offset-2">
           {COMPANY.email}
         </a>{" "}

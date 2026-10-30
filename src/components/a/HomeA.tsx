@@ -31,7 +31,6 @@ function Head({ en, title, lead, more }: { en: string; title: React.ReactNode; l
         {more && (
           <Link href={more.to} className="link-arrow text-ink">
             {more.label}
-            <ArrowRight className="size-3.5" />
           </Link>
         )}
       </div>
@@ -43,10 +42,10 @@ export default function HomeA() {
   const patents = CERTIFICATIONS.filter((c) => c.id.startsWith("pt-")).length;
   const clients = CLIENT_GROUPS.reduce((n, g) => n + g.clients.length, 0);
   const stats = [
-    { n: 5, u: "종", k: "ASME 인증", s: "U · U2 · U3 · S · PP" },
-    { n: 3, u: "종", k: "ISO 경영인증", s: "9001 · 14001 · 45001" },
-    { n: patents, u: "건", k: "특허", s: "인증 및 특허 게재 기준" },
-    { n: clients, u: "곳", k: "주요 고객사", s: "주요 고객사 게재 기준" },
+    { n: 5, u: "종", k: "ASME 인증", s: "U, U2, U3, S, PP" },
+    { n: 3, u: "종", k: "ISO 경영인증", s: "9001, 14001, 45001" },
+    { n: patents, u: "건", k: "특허", s: "필터 리액터 외" },
+    { n: clients, u: "곳", k: "주요 고객사", s: "바이오·제약, 이차전지, 화장품" },
   ];
   const latest = [...NEWS.filter((n) => n.type === "news" || n.type === "newsletter").slice(0, 3), NEWS.find((n) => n.type === "video")!];
 
@@ -102,10 +101,10 @@ export default function HomeA() {
           </p>
           <div className="lg:col-span-9">
             <p className="text-[24px] font-medium leading-[1.55] tracking-[-0.03em] text-ink sm:text-[30px] lg:text-[40px]" data-reveal>
-              우리는 끊임없는 연구와 축적된 경험을 바탕으로 <span className="text-navy">반응기, 여과기, 건조기, 믹서</span> 등 핵심 공정장비를 자체 기술로 설계·제작합니다.
+              우리는 끊임없는 연구와 축적된 경험을 바탕으로 <span className="text-navy">반응기, 여과기, 건조기, 믹서</span> 등 핵심 공정장비를 자체 기술로 설계하고 제작합니다.
             </p>
             <Link href={href(C, "company/overview")} className="link-arrow mt-10 text-ink" data-reveal>
-              회사개요 <ArrowRight className="size-3.5" />
+              회사개요
             </Link>
           </div>
         </div>
@@ -136,8 +135,7 @@ export default function HomeA() {
                   <span className="absolute inset-0 -z-10 bg-[linear-gradient(100deg,rgba(15,18,34,0.88)_0%,rgba(15,18,34,0.55)_45%,rgba(15,18,34,0.05)_100%)]" />
                   <div className="flex w-full flex-col justify-between p-7 sm:p-10 lg:p-14">
                     <p className="flex items-center gap-3 text-[13px] text-white/60">
-                      <span className="tabular-nums">{String(i + 1).padStart(2, "0")} / 06</span>
-                      <span className="h-px w-8 bg-white/40" />
+                      <span className="tabular-nums">{String(i + 1).padStart(2, "0")}</span>
                       {b.nameEn}
                     </p>
                     <div className="max-w-[640px]">
@@ -148,7 +146,7 @@ export default function HomeA() {
                         ))}
                       </ul>
                       <span className="link-arrow mt-8 text-white">
-                        자세히 보기 <ArrowRight className="size-3.5" />
+                        자세히 보기
                       </span>
                     </div>
                   </div>
@@ -162,7 +160,7 @@ export default function HomeA() {
       {/* 03 대표 제품 */}
       <section className="overflow-hidden bg-[#eef0f4] py-24 lg:py-32">
         <div className="wrap">
-          <Head en="Products" title={<>핵심 공정장비를 자체 기술로 <span className="whitespace-nowrap">설계·제작</span></>} more={{ to: href(C, "products/reactor"), label: "제품소개" }} />
+          <Head en="Products" title={<>핵심 공정장비를 자체 기술로 <span className="whitespace-nowrap">설계하고 제작합니다</span></>} more={{ to: href(C, "products/reactor"), label: "제품소개" }} />
         </div>
         <ProductRailA />
       </section>
@@ -209,7 +207,7 @@ export default function HomeA() {
         <div className="mt-28 flex items-end justify-between gap-4 border-b border-line pb-5" data-reveal>
           <h3 className="text-[22px] font-semibold tracking-[-0.03em] text-ink lg:text-[26px]">주요 수행실적</h3>
           <Link href={href(C, "tech/projects")} className="link-arrow text-ink">
-            전체 {PROJECTS.length}건 <ArrowRight className="size-3.5" />
+            전체 {PROJECTS.length}건
           </Link>
         </div>
         <ul className="mt-8 grid grid-cols-2 gap-x-4 gap-y-8 lg:grid-cols-4 lg:gap-x-5">
@@ -231,7 +229,7 @@ export default function HomeA() {
           <div className="flex items-end justify-between gap-4">
             <p className="text-[15px] text-muted">JP이노베이션은 다양한 파트너사들과 함께 합니다.</p>
             <Link href={href(C, "company/clients")} className="link-arrow shrink-0 text-ink">
-              주요 고객사 <ArrowRight className="size-3.5" />
+              주요 고객사
             </Link>
           </div>
           <ul className="mt-6 grid grid-cols-3 border-l border-t border-line sm:grid-cols-4 lg:grid-cols-6">
@@ -279,9 +277,9 @@ export default function HomeA() {
           </div>
           <ul className="border-t border-white/30 lg:col-span-5 lg:col-start-8" data-reveal style={d(120)}>
             {[
-              { to: href(C, "support/inquiry"), t: "사업·제품 문의", s: "엔지니어링 · 장비 · 건설" },
+              { to: href(C, "support/inquiry"), t: "사업·제품 문의", s: "엔지니어링, 장비, 건설" },
               { to: CATALOG_URL, t: "e-카탈로그", s: "제품 카탈로그 보기", ext: true },
-              { to: href(C, "support/contact"), t: "담당 연락처", s: "본사 · 동탄연구소" },
+              { to: href(C, "support/contact"), t: "담당 연락처", s: "본사, 동탄연구소" },
             ].map((x) => {
               const inner = (
                 <>

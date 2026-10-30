@@ -27,8 +27,8 @@ SHOTS = sys.argv[sys.argv.index("--shots") + 1] if "--shots" in sys.argv else No
 PAGES = [
     "",
     "company/overview", "company/ceo", "company/vision", "company/history", "company/clients", "company/location",
-    "business/epc-engineering", "business/secondary-battery", "business/pharma-bio", "business/electronic-materials", "business/construction",
-    "products/reactor", "products/dryer/filter-dryer", "products/reactor/filter-reactor", "products/mixer-mill/pd-mixer",
+    "business/epc-engineering", "business/secondary-battery", "business/pharma-bio", "business/electronic-materials", "business/petrochemical", "business/construction",
+    "products/reactor", "products/dryer/filter-dryer", "products/reactor/filter-reactor", "products/mixer/pdh-mixer", "products/mixer", "products/milling", "products/mixer/nauta-mixer", "products/mixer/agi-homo-mixer", "products/milling/refiner",
     "tech/certifications", "tech/projects", "tech/projects/p15",
     "news", "news/news-55", "news/letter-41", "news/letter-74",
     "support/inquiry", "support/contact", "privacy", "sitemap",

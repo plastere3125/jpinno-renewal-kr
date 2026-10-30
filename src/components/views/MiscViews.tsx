@@ -194,7 +194,7 @@ export function Contact({ concept }: { concept: Concept }) {
         <div className="mt-10 grid gap-5 md:grid-cols-2">
           {COMPANY.sites.map((s) => (
             <article key={s.key} className={`rounded-[var(--c-radius)] p-7 lg:p-10 ${dark ? "bg-deep text-white" : "border border-line bg-white"}`}>
-              <p className={`text-[13px] font-semibold uppercase tracking-[0.16em] ${dark ? "text-sky" : "text-sky-600"}`}>{s.key === "hq" ? "Head Office" : "R&D Center"}</p>
+              <p className={`sub-eyebrow text-[13px] font-semibold uppercase tracking-[0.16em] ${dark ? "text-sky" : "text-sky-600"}`}>{s.key === "hq" ? "Head Office" : "R&D Center"}</p>
               <h3 className="mt-2 text-[22px] font-semibold">{s.fullName}</h3>
               <p className={`mt-2 text-[14.5px] ${dark ? "text-white/65" : "text-muted"}`}>{s.address}</p>
               <dl className={`mt-6 space-y-3 border-t pt-6 text-[16px] ${dark ? "border-white/12" : "border-line"}`}>

@@ -4,7 +4,6 @@ import { href, img, type Concept } from "@/lib/site";
 import type { Project } from "@/lib/types";
 import { SectionTitle } from "@/components/shared/PageShell";
 import { ButtonLink, ZoomImage } from "@/components/shared/Widgets";
-import { ArrowRight } from "@/components/shared/Icons";
 import RecordsTable from "@/components/shared/RecordsTable";
 
 const sec = "wrap py-16 lg:py-24";
@@ -70,7 +69,6 @@ export function Projects({ concept }: { concept: Concept }) {
                     <p className="text-[12.5px] font-semibold tabular-nums text-sky-600">{projectMeta(p)}</p>
                     <h3 className="mt-1 text-[16.5px] font-semibold leading-snug text-ink group-hover:text-navy">{p.name}</h3>
                   </div>
-                  <ArrowRight className="mt-6 size-4 shrink-0 text-navy transition-transform group-hover:translate-x-1" />
                 </div>
               </Link>
             </li>
@@ -102,7 +100,7 @@ export function ProjectDetail({ concept, p }: { concept: Concept; p: Project }) 
             <img src={img(p.image)} alt={`${p.name} 사진`} width={449} height={287} className="aspect-[449/287] w-full object-cover" />
           </figure>
           <div>
-            <p className="text-[13px] font-semibold uppercase tracking-[0.16em] text-[var(--c-eyebrow)]">Project {String(i + 1).padStart(2, "0")}</p>
+            <p className="sub-eyebrow text-[13px] font-semibold uppercase tracking-[0.16em] text-[var(--c-eyebrow)]">Project {String(i + 1).padStart(2, "0")}</p>
             <h2 className="mt-2 text-[28px] font-semibold leading-tight text-[var(--c-heading)] lg:text-[36px]">{p.name}</h2>
             <dl className="mt-8 divide-y divide-line border-y border-line text-[15px]">
               {[

@@ -1,12 +1,11 @@
 import Link from "next/link";
-import { BUSINESSES, ELECTRONIC, EPC_STEPS, PHARMA_TABLE, PROCESS_IMAGES } from "@/content/ko/business";
+import { BUSINESSES, ELECTRONIC, EPC_STEPS, PETRO_PRODUCTS, PHARMA_TABLE, PROCESS_IMAGES } from "@/content/ko/business";
 import { PRODUCT_CATEGORIES } from "@/content/ko/products";
 import { PROJECTS } from "@/content/ko/tech";
 import { href, img, type Concept } from "@/lib/site";
 import type { Business } from "@/lib/types";
 import { SectionTitle } from "@/components/shared/PageShell";
 import { ButtonLink, ZoomImage } from "@/components/shared/Widgets";
-import { ArrowRight } from "@/components/shared/Icons";
 
 const sec = "wrap py-16 lg:py-24";
 
@@ -23,7 +22,7 @@ export default function BusinessView({ concept, b }: { concept: Concept; b: Busi
       <section className={sec}>
         <div className="grid gap-10 lg:grid-cols-[1fr_1.15fr] lg:gap-16">
           <div>
-            <p className="text-[13px] font-semibold uppercase tracking-[0.16em] text-[var(--c-eyebrow)]">{b.nameEn}</p>
+            <p className="sub-eyebrow text-[13px] font-semibold uppercase tracking-[0.16em] text-[var(--c-eyebrow)]">{b.nameEn}</p>
             <h2 className="mt-2 text-[26px] font-semibold leading-snug tracking-[-0.02em] text-[var(--c-heading)] lg:text-[34px]">{b.name}</h2>
             <ul className="mt-6 space-y-2.5 border-l-2 border-sky pl-5 text-[15.5px] leading-relaxed text-ink">
               {b.summary.map((s) => (
@@ -155,6 +154,22 @@ export default function BusinessView({ concept, b }: { concept: Concept; b: Busi
         </>
       )}
 
+      {b.slug === "petrochemical" && (
+        <section className="bg-[var(--c-alt)]">
+          <div className={sec}>
+            <SectionTitle eyebrow="Main Products" title="사업 주요 제품" />
+            <ol className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {PETRO_PRODUCTS.map((name, i) => (
+                <li key={name} className={`flex items-baseline gap-4 rounded-[var(--c-radius)] p-6 ${dark ? "bg-deep text-white" : "bg-white"}`}>
+                  <span className={`text-[13px] font-semibold tabular-nums ${dark ? "text-sky" : "text-sky-600"}`}>{String(i + 1).padStart(2, "0")}</span>
+                  <span className="text-[19px] font-semibold">{name}</span>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </section>
+      )}
+
       {b.slug === "construction" && (
         <section className="bg-[var(--c-alt)]">
           <div className={sec}>
@@ -192,7 +207,6 @@ export default function BusinessView({ concept, b }: { concept: Concept; b: Busi
                   </div>
                   <p className="flex items-center justify-between px-4 py-3 text-[15px] font-semibold text-ink">
                     {c.name}
-                    <ArrowRight className="size-4 text-navy transition-transform group-hover:translate-x-1" />
                   </p>
                 </Link>
               </li>

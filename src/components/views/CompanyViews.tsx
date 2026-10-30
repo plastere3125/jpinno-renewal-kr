@@ -80,7 +80,7 @@ export function CeoMessage({ concept }: { concept: Concept }) {
             <img src={img(CEO.photo)} alt="대표이사 이제환" width={560} height={700} className="w-full rounded-[var(--c-radius)] bg-mist" />
           </figure>
           <div>
-            <p className="text-[13px] font-semibold uppercase tracking-[0.16em] text-[var(--c-eyebrow)]">CEO Message</p>
+            <p className="sub-eyebrow text-[13px] font-semibold uppercase tracking-[0.16em] text-[var(--c-eyebrow)]">CEO Message</p>
             <h2 className="mt-3 text-[26px] font-semibold leading-snug tracking-[-0.02em] text-[var(--c-heading)] lg:text-[36px]">
               <span className="text-sky-600">기술</span>과 신뢰를 기반으로
               <br />
@@ -250,7 +250,7 @@ export function Location() {
         {COMPANY.sites.map((s) => (
           <article key={s.key} id={s.key} className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:gap-14">
             <div>
-              <p className="text-[13px] font-semibold uppercase tracking-[0.16em] text-[var(--c-eyebrow)]">{s.key === "hq" ? "Head Office" : "R&D Center"}</p>
+              <p className="sub-eyebrow text-[13px] font-semibold uppercase tracking-[0.16em] text-[var(--c-eyebrow)]">{s.key === "hq" ? "Head Office" : "R&D Center"}</p>
               <h2 className="mt-2 text-[26px] font-semibold text-[var(--c-heading)] lg:text-[30px]">{s.fullName}</h2>
               <dl className="mt-8 divide-y divide-line border-y border-line text-[15px]">
                 {[

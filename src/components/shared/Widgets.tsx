@@ -71,7 +71,7 @@ export function ProductCard({ concept, p, dark }: { concept: Concept; p: Product
         <h3 className="mt-1 text-[18px] font-semibold tracking-[-0.02em]">{p.name}</h3>
         <p className={`mt-2 flex-1 text-[14px] leading-relaxed ${dark ? "text-white/60" : "text-muted"}`}>{p.summary}</p>
         <span className={`mt-4 inline-flex items-center gap-2 text-[13.5px] font-medium ${dark ? "text-white" : "text-ink"}`}>
-          자세히 보기 <ArrowRight className="size-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+          자세히 보기
         </span>
       </div>
     </Link>
