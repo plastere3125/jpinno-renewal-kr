@@ -37,3 +37,8 @@ export function href(concept: Concept, path = "") {
 export function isConcept(v: string): v is Concept {
   return (CONCEPTS as readonly string[]).includes(v);
 }
+
+/** 세 단어 이상인 짧은 제목의 마지막 두 단어를 붙여 끝 단어 하나만 다음 줄로 떨어지지 않게 */
+export function keepLast(text: string) {
+  return text.split(" ").length >= 3 ? text.replace(/ (?=\S+$)/, " ") : text;
+}

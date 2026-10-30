@@ -3,6 +3,7 @@ import { PRODUCT_CATEGORIES, productsOf } from "@/content/ko/products";
 import { href, img, type Concept } from "@/lib/site";
 import type { Product, ProductCategory } from "@/lib/types";
 import { SectionTitle } from "@/components/shared/PageShell";
+import Lines from "@/components/shared/Lines";
 import { ButtonLink, ProductCard, SpecTable, ZoomImage } from "@/components/shared/Widgets";
 
 const sec = "wrap py-16 lg:py-24";
@@ -17,7 +18,9 @@ export function CategoryView({ concept, c }: { concept: Concept; c: ProductCateg
             <p className="sub-eyebrow text-[13px] font-semibold uppercase tracking-[0.16em] text-[var(--c-eyebrow)]">{c.nameEn}</p>
             <h2 className="mt-2 text-[26px] font-semibold text-[var(--c-heading)] lg:text-[32px]">{c.name}</h2>
           </div>
-          <p className="max-w-[620px] text-[15.5px] leading-relaxed text-muted lg:text-right">{c.summary}</p>
+          <p className="max-w-[620px] text-[15.5px] leading-relaxed text-muted lg:text-right">
+            <Lines text={c.summary} />
+          </p>
         </div>
         <p className="mt-6 text-[14px] text-muted">
           제품 <strong className="text-ink">{list.length}</strong>종
@@ -104,7 +107,7 @@ export function ProductDetail({ concept, p }: { concept: Concept; p: Product }) 
 
       {p.compare && (
         <section className={sec}>
-          <SectionTitle eyebrow="Process" title="기존 공정과 FILTER REACTOR 공정 비교" />
+          <SectionTitle eyebrow="Process" title="기존 공정과 FILTER REACTOR 공정 비교" />
           <div className="mt-10 grid gap-5 md:grid-cols-2">
             {p.compare.map((x) => (
               <figure key={x.title} className="rounded-[var(--c-radius)] border border-line p-5">
@@ -193,11 +196,11 @@ export function InquiryBand({ concept }: { concept: Concept }) {
       <div className="wrap flex flex-col gap-6 py-12 lg:flex-row lg:items-center lg:justify-between lg:py-14">
         <div>
           <p className="text-[22px] font-semibold lg:text-[26px]">공정에 맞는 장비와 엔지니어링이 필요하신가요?</p>
-          <p className="mt-2 text-[15px] text-white/70">사업·제품 문의를 남겨 주시면 담당 부서에서 확인 후 연락드립니다.</p>
+          <p className="mt-2 text-[15px] text-white/70">사업⁠·⁠제품 문의를 남겨 주시면 담당 부서에서 확인 후 연락드립니다.</p>
         </div>
         <div className="flex flex-wrap gap-3">
           <ButtonLink to={href(concept, "support/inquiry")} variant="light">
-            사업·제품 문의
+            사업⁠·⁠제품 문의
           </ButtonLink>
           <ButtonLink to={href(concept, "support/contact")} variant="ghost-light">
             담당 연락처

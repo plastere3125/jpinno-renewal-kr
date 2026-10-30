@@ -19,7 +19,7 @@ import ProductRailA from "./ProductRailA";
 const C: Concept = "concept-a";
 const d = (ms: number) => ({ ["--d" as string]: `${ms}ms` });
 
-function Head({ en, title, lead, more }: { en: string; title: React.ReactNode; lead?: string; more?: { to: string; label: string } }) {
+function Head({ en, title, lead, more }: { en: string; title: React.ReactNode; lead?: React.ReactNode; more?: { to: string; label: string } }) {
   return (
     <div className="grid gap-6 lg:grid-cols-12 lg:items-end">
       <div className="lg:col-span-7" data-reveal>
@@ -45,7 +45,7 @@ export default function HomeA() {
     { n: 5, u: "종", k: "ASME 인증", s: "U, U2, U3, S, PP" },
     { n: 3, u: "종", k: "ISO 경영인증", s: "9001, 14001, 45001" },
     { n: patents, u: "건", k: "특허", s: "필터 리액터 외" },
-    { n: clients, u: "곳", k: "주요 고객사", s: "바이오·제약, 이차전지, 화장품" },
+    { n: clients, u: "곳", k: "주요 고객사", s: "바이오⁠·⁠제약, 이차전지, 화장품" },
   ];
   const latest = [...NEWS.filter((n) => n.type === "news" || n.type === "newsletter").slice(0, 3), NEWS.find((n) => n.type === "video")!];
 
@@ -62,15 +62,15 @@ export default function HomeA() {
               <h1 className="t-display mt-6 text-[36px] text-ink sm:text-[52px] xl:text-[68px]" data-reveal style={d(80)}>
                 제약 바이오 및 이차전지,
                 <br />
-                석유 정밀화학 <span className="text-navy">플랜트 전문기업</span>
+                석유 정밀화학 <span className="whitespace-nowrap text-navy">플랜트 전문기업</span>
               </h1>
             </div>
             <div className="lg:col-span-4 lg:pb-3" data-reveal style={d(200)}>
-              <p className="t-lead">엔지니어링설계, 장비제작, 시공 및 사후관리까지 EPC(Turn-Key) 사업을 수행합니다.</p>
+              <p className="t-lead">엔지니어링설계, 장비제작, 시공 및 사후관리까지 <span className="whitespace-nowrap">EPC(Turn-Key)</span> 사업을 수행합니다.</p>
               <div className="mt-7 flex flex-wrap gap-2.5">
                 <ButtonLink to={href(C, "business/epc-engineering")}>사업분야</ButtonLink>
                 <ButtonLink to={href(C, "support/inquiry")} variant="outline">
-                  사업·제품 문의
+                  사업⁠·⁠제품 문의
                 </ButtonLink>
               </div>
             </div>
@@ -101,7 +101,13 @@ export default function HomeA() {
           </p>
           <div className="lg:col-span-9">
             <p className="text-[24px] font-medium leading-[1.55] tracking-[-0.03em] text-ink sm:text-[30px] lg:text-[40px]" data-reveal>
-              우리는 끊임없는 연구와 축적된 경험을 바탕으로 <span className="text-navy">반응기, 여과기, 건조기, 믹서</span> 등 핵심 공정장비를 자체 기술로 설계하고 제작합니다.
+              우리는 끊임없는 연구와{" "}
+              <br className="xl:hidden" />
+              축적된 경험을 바탕으로{" "}
+              <br className="hidden xl:block" />
+              <span className="whitespace-nowrap text-navy">반응기, 여과기, 건조기, 믹서</span> 등 핵심 공정장비를{" "}
+              <br className="hidden xl:block" />
+              자체 기술로 <span className="whitespace-nowrap">설계하고 제작합니다.</span>
             </p>
             <Link href={href(C, "company/overview")} className="link-arrow mt-10 text-ink" data-reveal>
               회사개요
@@ -125,7 +131,7 @@ export default function HomeA() {
       {/* 02 사업분야: 스크롤 시 겹쳐 올라오는 카드 */}
       <section className="bg-mist pb-24 pt-24 lg:pb-36 lg:pt-32">
         <div className="wrap">
-          <Head en="Business" title="공정의 모든 것을 한번에" lead="엔지니어링 및 PLANT 설계, 시공, 건설 수행까지 고객이 필요한 공정을 완성합니다." more={{ to: href(C, "business/epc-engineering"), label: "사업분야 전체" }} />
+          <Head en="Business" title="공정의 모든 것을 한번에" lead={<>엔지니어링 및 PLANT 설계, 시공, 건설 수행까지{" "}<br className="lg:hidden xl:block" />고객이 필요한 공정을 완성합니다.</>} more={{ to: href(C, "business/epc-engineering"), label: "사업분야 전체" }} />
           <ol className="mt-14 lg:mt-20">
             {BUSINESSES.map((b, i) => (
               <li key={b.slug} className="sticky mb-6 lg:mb-10" style={{ top: `calc(var(--header-h) + 20px + ${i * 14}px)` }}>
@@ -160,7 +166,7 @@ export default function HomeA() {
       {/* 03 대표 제품 */}
       <section className="overflow-hidden bg-[#eef0f4] py-24 lg:py-32">
         <div className="wrap">
-          <Head en="Products" title={<>핵심 공정장비를 자체 기술로 <span className="whitespace-nowrap">설계하고 제작합니다</span></>} more={{ to: href(C, "products/reactor"), label: "제품소개" }} />
+          <Head en="Products" title={<>핵심 공정장비를{" "}<br className="lg:hidden xl:block" />자체 기술로 <span className="whitespace-nowrap">설계하고 제작합니다</span></>} more={{ to: href(C, "products/reactor"), label: "제품소개" }} />
         </div>
         <ProductRailA />
       </section>
@@ -170,7 +176,7 @@ export default function HomeA() {
         <Head
           en="Technology & Projects"
           title="현장에서 검증된 기술력"
-          lead="ASME 인증과 ISO 경영시스템, 자체 특허를 바탕으로 설계·제작합니다."
+          lead={<>ASME 인증과 ISO 경영시스템,{" "}<br className="lg:hidden xl:block" />자체 특허를 바탕으로 설계⁠·⁠제작합니다.</>}
           more={{ to: href(C, "tech/certifications"), label: `인증 및 특허 ${CERTIFICATIONS.length}건` }}
         />
         <div className="mt-14 grid gap-12 lg:mt-20 lg:grid-cols-12">
@@ -178,8 +184,8 @@ export default function HomeA() {
             {[
               ["ASME", "U · U2 · U3 · S · PP Certificate"],
               ["ISO", "9001 품질 · 14001 환경 · 45001 안전보건"],
-              ["면허", "건설업(산업·환경설비공사업) · 특정설비제조"],
-              ["확인서", "기술혁신·경영혁신 중소기업, 벤처기업, 뿌리기업, 소재·부품·장비 전문기업"],
+              ["면허", "건설업⁠(산업⁠·⁠환경설비공사업) · 특정설비제조"],
+              ["확인서", "기술혁신⁠·⁠경영혁신 중소기업, 벤처기업, 뿌리기업, 소재⁠·⁠부품⁠·⁠장비 전문기업"],
               ["특허", `필터 리액터 외 ${patents - 1}건`],
             ].map(([k, v]) => (
               <div key={k} className="grid grid-cols-[80px_1fr] gap-4 border-b border-line py-5">
@@ -268,8 +274,9 @@ export default function HomeA() {
           <div className="lg:col-span-6" data-reveal>
             <p className="eyebrow !text-white/60">Contact</p>
             <h2 className="t-section mt-4">
-              JP이노베이션에 대해 궁금한 사항이
-              <br className="hidden sm:block" /> 있으시다면 문의해 주세요.
+              JP이노베이션에 대해 궁금한 사항이{" "}
+              <br className="hidden xl:block" />
+              있으시다면 문의해 주세요.
             </h2>
             <p className="mt-6 text-[15px] text-white/70">
               T. {COMPANY.sites[0].tel} · {COMPANY.email}
@@ -277,7 +284,7 @@ export default function HomeA() {
           </div>
           <ul className="border-t border-white/30 lg:col-span-5 lg:col-start-8" data-reveal style={d(120)}>
             {[
-              { to: href(C, "support/inquiry"), t: "사업·제품 문의", s: "엔지니어링, 장비, 건설" },
+              { to: href(C, "support/inquiry"), t: "사업⁠·⁠제품 문의", s: "엔지니어링, 장비, 건설" },
               { to: CATALOG_URL, t: "e-카탈로그", s: "제품 카탈로그 보기", ext: true },
               { to: href(C, "support/contact"), t: "담당 연락처", s: "본사, 동탄연구소" },
             ].map((x) => {

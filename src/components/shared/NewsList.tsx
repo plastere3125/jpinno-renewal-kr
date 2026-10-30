@@ -42,7 +42,7 @@ export default function NewsList({ concept }: { concept: Concept }) {
         })}
       </div>
       <p className="mt-4 text-[13px] text-muted" aria-live="polite">
-        총 {list.length}건 · 블로그·영상은 원문 채널로 이동합니다.
+        총 {list.length}건 · 블로그⁠·⁠영상은 원문 채널로 이동합니다.
       </p>
       <ul className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {list.slice(0, count).map((n) => (

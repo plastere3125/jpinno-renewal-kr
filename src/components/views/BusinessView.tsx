@@ -2,9 +2,10 @@ import Link from "next/link";
 import { BUSINESSES, ELECTRONIC, EPC_STEPS, PETRO_PRODUCTS, PHARMA_TABLE, PROCESS_IMAGES } from "@/content/ko/business";
 import { PRODUCT_CATEGORIES } from "@/content/ko/products";
 import { PROJECTS } from "@/content/ko/tech";
-import { href, img, type Concept } from "@/lib/site";
+import { href, img, type Concept, keepLast } from "@/lib/site";
 import type { Business } from "@/lib/types";
 import { SectionTitle } from "@/components/shared/PageShell";
+import Lines from "@/components/shared/Lines";
 import { ButtonLink, ZoomImage } from "@/components/shared/Widgets";
 
 const sec = "wrap py-16 lg:py-24";
@@ -20,7 +21,7 @@ export default function BusinessView({ concept, b }: { concept: Concept; b: Busi
   return (
     <>
       <section className={sec}>
-        <div className="grid gap-10 lg:grid-cols-[1fr_1.15fr] lg:gap-16">
+        <div className="grid gap-10 lg:grid-cols-[1fr_1.15fr] lg:gap-16 min-[1400px]:grid-cols-[1fr_1.55fr]!">
           <div>
             <p className="sub-eyebrow text-[13px] font-semibold uppercase tracking-[0.16em] text-[var(--c-eyebrow)]">{b.nameEn}</p>
             <h2 className="mt-2 text-[26px] font-semibold leading-snug tracking-[-0.02em] text-[var(--c-heading)] lg:text-[34px]">{b.name}</h2>
@@ -32,7 +33,9 @@ export default function BusinessView({ concept, b }: { concept: Concept; b: Busi
           </div>
           <div className="prose-ko text-[16px] leading-[1.85] text-ink/85">
             {b.intro.map((p) => (
-              <p key={p}>{p}</p>
+              <p key={p}>
+                <Lines text={p} wide />
+              </p>
             ))}
           </div>
         </div>
@@ -185,7 +188,7 @@ export default function BusinessView({ concept, b }: { concept: Concept; b: Busi
                   <Link href={href(concept, `tech/projects/${p.id}`)} className="group block overflow-hidden rounded-[var(--c-radius)] bg-white">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={img(p.image)} alt="" loading="lazy" className="aspect-[449/287] w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]" />
-                    <p className="px-4 py-3 text-[14.5px] font-semibold text-ink">{p.name}</p>
+                    <p className="px-4 py-3 text-[14.5px] font-semibold text-ink [text-wrap:balance]">{keepLast(p.name)}</p>
                   </Link>
                 </li>
               ))}
@@ -219,11 +222,11 @@ export default function BusinessView({ concept, b }: { concept: Concept; b: Busi
         <div className="wrap grid grid-cols-2">
           <Link href={href(concept, `business/${prev.slug}`)} className="group py-8 pr-4 text-left">
             <span className="text-[13px] text-muted">이전 사업분야</span>
-            <span className="mt-1 block text-[17px] font-semibold text-ink group-hover:text-navy">← {prev.name}</span>
+            <span className="mt-1 block text-[17px] font-semibold text-ink group-hover:text-navy [text-wrap:balance]">←&nbsp;{keepLast(prev.name)}</span>
           </Link>
           <Link href={href(concept, `business/${next.slug}`)} className="group border-l border-line py-8 pl-4 text-right">
             <span className="text-[13px] text-muted">다음 사업분야</span>
-            <span className="mt-1 block text-[17px] font-semibold text-ink group-hover:text-navy">{next.name} →</span>
+            <span className="mt-1 block text-[17px] font-semibold text-ink group-hover:text-navy [text-wrap:balance]">{keepLast(next.name)}&nbsp;→</span>
           </Link>
         </div>
       </nav>

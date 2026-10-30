@@ -37,6 +37,14 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* 줄바꿈 정리(A안): 제목은 줄 길이를 고르게, 본문은 마지막 줄에 단어 하나만 남지 않게 */
+[data-concept="concept-a"] :is(h1, h2, h3, h4, h5, h6, dt, th, figcaption, label) {
+  text-wrap: balance;
+}
+[data-concept="concept-a"] :is(p, li, dd, td, blockquote) {
+  text-wrap: pretty;
+}
+
 .wrap {
   width: 100%;
   max-width: 1320px;

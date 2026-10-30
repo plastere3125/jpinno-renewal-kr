@@ -266,7 +266,7 @@ export function Location() {
                 ))}
               </dl>
               <a
-                href={`https://map.naver.com/p/search/${encodeURIComponent(s.address.replace(/ \d{4}-\d{4}호$/, ""))}`}
+                href={`https://map.naver.com/p/search/${encodeURIComponent(s.address.replace(/\u2060/g, "").replace(/ \d{4}-\d{4}호$/, ""))}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-6 inline-flex h-12 items-center gap-2 rounded-[var(--c-radius)] border border-navy px-6 text-[15px] font-semibold text-navy transition-colors hover:bg-navy hover:text-white"

@@ -19,7 +19,7 @@ export default function Chooser() {
             <br />
             국문 디자인 시안
           </h1>
-          <p className="t-lead lg:col-span-4 lg:col-start-9">구조도 A안(기업 신뢰·전문성 중심형) 기준. 같은 콘텐츠로 두 가지 디자인 컨셉을 비교하실 수 있습니다.</p>
+          <p className="t-lead lg:col-span-4 lg:col-start-9">구조도 A안⁠(기업 신뢰⁠·⁠전문성 중심형) 기준. 같은 콘텐츠로 두 가지 디자인 컨셉을 비교하실 수 있습니다.</p>
         </div>
 
         <ul className="mt-14 grid gap-10 lg:mt-20 lg:grid-cols-2 lg:gap-6">
@@ -53,7 +53,7 @@ export default function Chooser() {
           })}
         </ul>
         <p className="mt-20 border-t border-line pt-6 text-[13px] leading-relaxed text-muted">
-          검토용 시안입니다. 검색엔진 색인에서 제외되어 있으며, 현재 운영 중인 jpinno.com 과는 별개입니다. 콘텐츠·이미지는 기존 국문 홈페이지 공개 자료를 사용했습니다.
+          검토용 시안입니다. 검색엔진 색인에서 제외되어 있으며, 현재 운영 중인 jpinno.com 과는 별개입니다. 콘텐츠⁠·⁠이미지는 기존 국문 홈페이지 공개 자료를 사용했습니다.
         </p>
       </div>
     </main>

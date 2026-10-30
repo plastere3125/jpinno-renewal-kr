@@ -4,40 +4,40 @@ import type { Certification, DeliveryRecord, EpcRecord, Project } from "@/lib/ty
  * 인증·면허·확인서·특허
  * 출처: https://jpinno.com/company/certificate-patent/ 게시 목록 + 2026-10-19 클라이언트 제공 '홈페이지용/COMPANY/인증 및 특허' 원본
  * - 이미지는 모두 제공 원본(PDF/JPG)으로 교체. 법인등록번호는 가림 처리(건설업등록증은 클라이언트가 모자이크해 제공)
- * - 신규: 특정설비제조 등록증명서, 소재부품장비 전문기업 확인서, 특허 '믹싱 공정용 믹서 장치', 디자인등록 '건축 파일용 조인트'
+ * - 신규: 특정설비제조 등록증명서, 소재부품장비 전문기업 확인서, 특허 '믹싱 공정용 믹서 장치', 디자인등록 '건축 파일용 조인트'
  */
 export const CERTIFICATIONS: Certification[] = [
   { id: "iso9001", group: "cert", name: "ISO 9001 품질경영시스템 인증서", image: "certs/hd/iso9001.jpg" },
   { id: "iso45001", group: "cert", name: "ISO 45001 안전보건경영시스템 인증서", image: "certs/hd/iso45001.jpg" },
   { id: "iso14001", group: "cert", name: "ISO 14001 환경경영시스템 인증서", image: "certs/hd/iso14001.jpg" },
-  { id: "asme-u", group: "cert", name: "ASME U Certificate", image: "certs/hd/asme-u.jpg" },
-  { id: "asme-u2", group: "cert", name: "ASME U2 Certificate", image: "certs/hd/asme-u2.jpg" },
-  { id: "asme-u3", group: "cert", name: "ASME U3 Certificate", image: "certs/hd/asme-u3.jpg" },
+  { id: "asme-u", group: "cert", name: "ASME U Certificate", image: "certs/hd/asme-u.jpg" },
+  { id: "asme-u2", group: "cert", name: "ASME U2 Certificate", image: "certs/hd/asme-u2.jpg" },
+  { id: "asme-u3", group: "cert", name: "ASME U3 Certificate", image: "certs/hd/asme-u3.jpg" },
   { id: "asme-pp", group: "cert", name: "ASME PP Certificate", image: "certs/hd/asme-pp.jpg" },
   { id: "asme-s", group: "cert", name: "ASME S Certificate", image: "certs/hd/asme-s.jpg" },
-  { id: "license", group: "license", name: "건설업 등록증 (산업·환경설비공사업)", image: "certs/hd/license.jpg" },
+  { id: "license", group: "license", name: "건설업 등록증 (산업⁠·⁠환경설비공사업)", image: "certs/hd/license.jpg" },
   { id: "special-equipment", group: "license", name: "특정설비제조 등록증명서", image: "certs/hd/special-equipment.jpg" },
-  { id: "inno-biz", group: "confirm", name: "기술혁신형 중소기업(Inno-Biz) 확인서", image: "certs/hd/inno-biz.jpg" },
-  { id: "main-biz", group: "confirm", name: "경영혁신형 중소기업(Main-Biz) 확인서", image: "certs/hd/main-biz.jpg" },
+  { id: "inno-biz", group: "confirm", name: "기술혁신형 중소기업⁠(Inno-⁠Biz) 확인서", image: "certs/hd/inno-biz.jpg" },
+  { id: "main-biz", group: "confirm", name: "경영혁신형 중소기업⁠(Main-⁠Biz) 확인서", image: "certs/hd/main-biz.jpg" },
   { id: "venture", group: "confirm", name: "벤처기업 확인서", image: "certs/hd/venture.jpg" },
   { id: "root", group: "confirm", name: "뿌리기업 확인서", image: "certs/hd/root.jpg" },
-  { id: "sobujang", group: "confirm", name: "소재·부품·장비 전문기업 확인서", image: "certs/hd/sobujang.jpg" },
+  { id: "sobujang", group: "confirm", name: "소재⁠·⁠부품⁠·⁠장비 전문기업 확인서", image: "certs/hd/sobujang.jpg" },
   { id: "pt-pouch", group: "patent", name: "2차 전지 파우치 제조장치 및 제조방법", image: "certs/hd/pt-pouch.jpg" },
   { id: "pt-filter-reactor", group: "patent", name: "복합기능 구현이 가능한 필터 리액터", image: "certs/hd/pt-filter-reactor.jpg" },
   { id: "pt-mill", group: "patent", name: "분체 분쇄 장치", image: "certs/hd/pt-mill.jpg" },
   { id: "pt-joint", group: "patent", name: "자동 체결 조인트", image: "certs/hd/pt-joint.jpg" },
   { id: "pt-temp", group: "patent", name: "가열 및 냉각 싸이클 분리식 반응기 온도 조절장치", image: "certs/hd/pt-temp.jpg" },
   { id: "pt-shaft", group: "patent", name: "누체 건조기의 교반축 조립체", image: "certs/hd/pt-shaft.jpg" },
-  { id: "pt-preserve", group: "patent", name: "물품 가공 및 보존 처리용 장치", image: "certs/hd/pt-preserve.jpg" },
+  { id: "pt-preserve", group: "patent", name: "물품 가공 및 보존 처리용 장치", image: "certs/hd/pt-preserve.jpg" },
   { id: "pt-mixer", group: "patent", name: "믹싱 공정용 믹서 장치", image: "certs/hd/pt-mixer.jpg" },
-  { id: "ds-pile-joint", group: "patent", name: "디자인등록 · 건축 파일용 조인트", image: "certs/hd/ds-pile-joint.jpg" },
+  { id: "ds-pile-joint", group: "patent", name: "디자인등록 · 건축 파일용 조인트", image: "certs/hd/ds-pile-joint.jpg" },
 ];
 
 export const CERT_GROUPS: { key: Certification["group"]; title: string }[] = [
-  { key: "cert", title: "품질·기술 인증" },
-  { key: "license", title: "면허·등록" },
+  { key: "cert", title: "품질⁠·⁠기술 인증" },
+  { key: "license", title: "면허⁠·⁠등록" },
   { key: "confirm", title: "기업 확인서" },
-  { key: "patent", title: "특허·디자인" },
+  { key: "patent", title: "특허⁠·⁠디자인" },
 ];
 
 /**
@@ -54,16 +54,16 @@ export const PROJECTS: Project[] = (
   [
     ["IC바이오 천안2공장 신축", "projects/hd/site-15.jpg", "2025", "바이오"],
     ["에이에스텍 장항 2공장 신축", "projects/hd/site-12.jpg", "2025", "바이오"],
-    ["선진뷰티사이언스 F2 믹서 등 장비 공급", "projects/hd/site-11.jpg", "2025", "바이오"],
+    ["선진뷰티사이언스 F2 믹서 등 장비 공급", "projects/hd/site-11.jpg", "2025", "바이오"],
     ["SK바이오텍 세종공장 증설 EPC", "projects/hd/site-09.jpg", "2024", "바이오"],
     ["에이에스텍 장항1공장 증설 EPC", "projects/hd/site-13.jpg", "2024", "바이오"],
-    ["유피케미칼 2·3공장 증설 EPC", "projects/hd/site-14.jpg", "2024", "반도체"],
+    ["유피케미칼 2⁠·⁠3공장 증설 EPC", "projects/hd/site-14.jpg", "2024", "반도체"],
     ["대주전자재료 증설 M4동", "projects/hd/site-10.jpg", "2024", "2차 전지"],
     ["YCI 어드밴스드 울산공장 EPC", "projects/hd/site-08.jpg", "2024", "전자소재"],
     ["삼진제약 오송공장 증축 EPC", "projects/hd/site-07.jpg", "2021", "제약"],
     ["에이에스텍 장항 공장 신축 EPC", "projects/hd/site-06.jpg", "2020", "바이오"],
     ["에거슨바이오 공장 신축 EPC", "projects/hd/site-05.jpg", "2019", "바이오"],
-    ["SK바이오텍 E-PROJECT 설비 공사", "projects/hd/site-04.jpg", "2018", "바이오"],
+    ["SK바이오텍 E-⁠PROJECT 설비 공사", "projects/hd/site-04.jpg", "2018", "바이오"],
     ["명인제약 GMP 공장 신축 EPC", "projects/hd/site-03.jpg", "2017", "제약"],
     ["SK바이오텍 세종공장 신축", "projects/hd/site-01.jpg", "2016", "바이오"],
     ["미래파인켐 공장 신축", "projects/hd/site-02.jpg", "2016", "제약"],
@@ -83,7 +83,7 @@ export const PROJECTS: Project[] = (
   image,
   year,
   industry,
-  source: image.startsWith("projects/hd/") ? "클라이언트 제공(2026-10-19)" : "https://jpinno.com/business/construction/",
+  source: image.startsWith("projects/hd/") ? "클라이언트 제공⁠(2026-⁠10-⁠19)" : "https://jpinno.com/business/construction/",
 }));
 
 /** 카드·상세에 쓰는 보조 표기: '2024 · 바이오' */
@@ -105,14 +105,14 @@ export const EPC_RECORDS: EpcRecord[] = (
     ["2025", "AS텍", "바이오", "장항 2공장 신축"],
     ["2025", "파마리서치", "제약", "4공장 원료 신규라인 증축 설계"],
     ["2025", "파마리서치", "제약", "5공장 원료 플랜트 공사"],
-    ["2025", "탑머티리얼", "2차 전지", "라이텐 믹싱라인(전극)"],
+    ["2025", "탑머티리얼", "2차 전지", "라이텐 믹싱라인⁠(전극)"],
     ["2025", "삼성 SDI", "2차 전지", "NMP 리사이클"],
     ["2025", "포스코퓨쳐엠", "2차 전지", "실리콘 음극재 - 에탄올 리사이클"],
     ["2025", "유티스", "2차 전지", "원액 탱크룸 이전설치"],
     ["2025", "케이지에이", "2차 전지", "절연재 공급라인 제작 설치"],
     ["2025", "엔플로우", "2차 전지", "전고체 생산설비 제작 설치"],
     ["2024", "YCIA", "전자소재", "울산공장 신축"],
-    ["2024", "유피케미칼", "반도체", "2·3공장 증설"],
+    ["2024", "유피케미칼", "반도체", "2⁠·⁠3공장 증설"],
     ["2024", "삼진제약", "제약", "오송공장 연구소 PILOT 신축"],
     ["2024", "AS텍", "바이오", "장항 1공장 증설"],
     ["2024", "SK바이오텍", "바이오", "세종공장 증설"],
@@ -131,7 +131,7 @@ export const EPC_RECORDS: EpcRecord[] = (
     ["2017", "명인제약", "제약", "GMP 공장 신축"],
     ["2016", "오리온", "식품", "공장 신축"],
     ["2016", "미래파인켐", "제약", "화성공장 신축"],
-    ["2016", "SK바이오텍", "바이오", "세종공장 신축(M1)"],
+    ["2016", "SK바이오텍", "바이오", "세종공장 신축⁠(M1)"],
     ["2015", "SK이노베이션", "전자소재", "PILOT PLANT 신축"],
     ["2015", "쌍곰켐", "정밀화학", "접착제 공장 신축"],
     ["2015", "유피케미칼", "반도체", "2공장 증축"],
@@ -153,7 +153,7 @@ export const CHEMICAL_RECORDS: DeliveryRecord[] = (
     ["2024", "에이에스텍", "20 H/C", "HEAT EXCHANGER"],
     ["2024", "IC바이오", "Φ600 × 2,400H", "에탄올회수 증류탑"],
     ["2023", "㈜경보제약", "15 H/C", "LN2 HEAT EXCHANGER"],
-    ["2023", "에이에스텍", "2,000L", "반응기(GL)"],
+    ["2023", "에이에스텍", "2,000L", "반응기⁠(GL)"],
     ["2022", "엔지켐생명과학", "5,000L", "반응기"],
     ["2022", "유피케미칼", "Φ108 × 1,000H", "반도체 Precursor 증류탑"],
     ["2021", "유티스", "1,000L", "반응기"],

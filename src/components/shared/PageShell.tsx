@@ -2,6 +2,7 @@ import Link from "next/link";
 import { NAV } from "@/content/ko/common";
 import { href, img, type Concept } from "@/lib/site";
 import { ChevronRight } from "./Icons";
+import Lines from "./Lines";
 
 const SECTION_EN: Record<string, string> = {
   company: "Company",
@@ -124,7 +125,7 @@ export default function PageShell({ concept, section, current, title, trail = []
             </h1>
             {slogan && (
               <p className="mt-5 max-w-[680px] text-[17px] leading-relaxed text-white/75 lg:text-[20px]" data-reveal style={{ ["--d" as string]: "160ms" }}>
-                {slogan}
+                <Lines text={slogan} />
               </p>
             )}
           </div>
@@ -148,7 +149,7 @@ export default function PageShell({ concept, section, current, title, trail = []
               </h1>
               {slogan && (
                 <p className="max-w-[420px] text-[15.5px] leading-relaxed text-white/90 lg:text-[17px]" data-reveal style={{ ["--d" as string]: "120ms" }}>
-                  {slogan}
+                  <Lines text={slogan} />
                 </p>
               )}
             </div>

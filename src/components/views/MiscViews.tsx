@@ -124,7 +124,7 @@ export function NewsDetail({ concept, n }: { concept: Concept; n: NewsItem }) {
         )}
       </article>
 
-      <nav aria-label="이전·다음 소식" className="border-t border-line">
+      <nav aria-label="이전⁠·⁠다음 소식" className="border-t border-line">
         <div className="wrap max-w-[960px] divide-y divide-line">
           {[
             { k: "다음 글", item: newer },
@@ -157,7 +157,7 @@ export function Inquiry() {
     <section className={sec}>
       <div className="grid gap-12 lg:grid-cols-[320px_1fr] lg:gap-20">
         <aside>
-          <SectionTitle eyebrow="Inquiry" title="사업·제품 문의" desc="엔지니어링·장비·건설 관련 문의를 남겨 주세요." />
+          <SectionTitle eyebrow="Inquiry" title="사업⁠·⁠제품 문의" desc="엔지니어링⁠·⁠장비⁠·⁠건설 관련 문의를 남겨 주세요." />
           <ul className="mt-8 space-y-3 text-[15px]">
             <li className="flex items-center gap-3">
               <PhoneIcon className="size-5 text-sky-600" />
@@ -222,9 +222,9 @@ export function Contact({ concept }: { concept: Concept }) {
             </article>
           ))}
         </div>
-        <p className="mt-6 text-[14px] text-muted">부서·담당자별 연락처는 확정 후 추가됩니다.</p>
+        <p className="mt-6 text-[14px] text-muted">부서⁠·⁠담당자별 연락처는 확정 후 추가됩니다.</p>
         <div className="mt-10 flex flex-wrap gap-3">
-          <ButtonLink to={href(concept, "support/inquiry")}>사업·제품 문의하기</ButtonLink>
+          <ButtonLink to={href(concept, "support/inquiry")}>사업⁠·⁠제품 문의하기</ButtonLink>
           <ButtonLink to={href(concept, "company/location")} variant="outline">
             오시는 길
           </ButtonLink>

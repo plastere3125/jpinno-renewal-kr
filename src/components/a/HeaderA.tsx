@@ -65,7 +65,7 @@ export default function HeaderA() {
               href={href(C, "support/inquiry")}
               className="hidden h-10 items-center rounded-[2px] border border-ink/15 px-4 text-[13.5px] font-medium text-ink transition-colors hover:border-ink lg:inline-flex"
             >
-              사업·제품 문의
+              사업⁠·⁠제품 문의
             </Link>
             <button
               type="button"
@@ -183,7 +183,7 @@ export default function HeaderA() {
           </nav>
           <div className="shrink-0 border-t border-line p-4">
             <Link href={href(C, "support/inquiry")} onClick={closeDrawer} tabIndex={drawer ? 0 : -1} className="flex h-12 items-center justify-center rounded-[2px] bg-navy text-[15px] font-medium text-white">
-              사업·제품 문의
+              사업⁠·⁠제품 문의
             </Link>
           </div>
         </div>

@@ -65,7 +65,7 @@ export default function Footer({ concept }: { concept: Concept }) {
 
         <div className={`mt-8 flex flex-col gap-4 border-t pt-6 text-[13px] md:flex-row md:items-center md:justify-between ${t.line}`}>
           <p className="leading-relaxed">
-            {COMPANY.name} · 대표이사 {COMPANY.ceo} · 사업자등록번호 {COMPANY.bizNo} · E-mail{" "}
+            {COMPANY.name} · 대표이사 {COMPANY.ceo} · <span className="whitespace-nowrap">사업자등록번호 {COMPANY.bizNo}</span> · E-mail{" "}
             <a href={`mailto:${COMPANY.email}`} className={t.link}>{COMPANY.email}</a>
             <br />© COPYRIGHT JP INNOVATION. ALL RIGHTS RESERVED.
           </p>

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { CERT_GROUPS, CERTIFICATIONS, EPC_RECORDS, PROJECTS, RECORD_TABS, projectMeta } from "@/content/ko/tech";
-import { href, img, type Concept } from "@/lib/site";
+import { href, img, type Concept, keepLast } from "@/lib/site";
 import type { Project } from "@/lib/types";
 import { SectionTitle } from "@/components/shared/PageShell";
 import { ButtonLink, ZoomImage } from "@/components/shared/Widgets";
@@ -123,12 +123,12 @@ export function ProjectDetail({ concept, p }: { concept: Concept; p: Project }) 
           </div>
         </div>
       </section>
-      <nav aria-label="이전·다음 수행실적" className="border-t border-line">
+      <nav aria-label="이전⁠·⁠다음 수행실적" className="border-t border-line">
         <div className="wrap grid grid-cols-2">
           {prev ? (
             <Link href={href(concept, `tech/projects/${prev.id}`)} className="group py-8 pr-4">
               <span className="text-[13px] text-muted">이전 실적</span>
-              <span className="mt-1 block text-[16px] font-semibold text-ink group-hover:text-navy">← {prev.name}</span>
+              <span className="mt-1 block text-[16px] font-semibold text-ink group-hover:text-navy [text-wrap:balance]">←&nbsp;{keepLast(prev.name)}</span>
             </Link>
           ) : (
             <span />
@@ -136,7 +136,7 @@ export function ProjectDetail({ concept, p }: { concept: Concept; p: Project }) 
           {next ? (
             <Link href={href(concept, `tech/projects/${next.id}`)} className="group border-l border-line py-8 pl-4 text-right">
               <span className="text-[13px] text-muted">다음 실적</span>
-              <span className="mt-1 block text-[16px] font-semibold text-ink group-hover:text-navy">{next.name} →</span>
+              <span className="mt-1 block text-[16px] font-semibold text-ink group-hover:text-navy [text-wrap:balance]">{keepLast(next.name)}&nbsp;→</span>
             </Link>
           ) : (
             <span className="border-l border-line" />
