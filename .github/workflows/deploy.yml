@@ -1,24 +1,79 @@
 name: Deploy prototype to GitHub Pages
 
+# 배포 경로
+# - main 에 push → main 배포 (기존과 동일)
+# - 예약: 2026-11-19 09:50 KST(00:50 UTC)에 release-261119 브랜치를 배포하고 main 을 그 브랜치로 맞춤
+#   (GitHub 예약 실행은 수 분~20분 늦게 시작될 수 있음 → 10시 전후 반영 목표)
+#   날짜 검사로 2026-11-19(KST) 외에는 실행해도 아무 것도 하지 않음
+# - 수동 실행(workflow_dispatch): ref 를 골라 빌드, deploy=false 면 빌드 검사만
 on:
   push:
     branches: [main]
+  schedule:
+    - cron: "50 0 19 11 *"
   workflow_dispatch:
+    inputs:
+      ref:
+        description: "배포할 브랜치"
+        default: main
+        type: string
+      deploy:
+        description: "실제 배포 여부 (false = 빌드 검사만)"
+        default: true
+        type: boolean
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
+  gate:
+    runs-on: ubuntu-latest
+    outputs:
+      ref: ${{ steps.pick.outputs.ref }}
+      build: ${{ steps.pick.outputs.build }}
+      deploy: ${{ steps.pick.outputs.deploy }}
+      promote: ${{ steps.pick.outputs.promote }}
+    steps:
+      - id: pick
+        run: |
+          case "${{ github.event_name }}" in
+            schedule)
+              today=$(TZ=Asia/Seoul date +%F)
+              echo "KST today: $today"
+              if [ "$today" = "2026-11-19" ]; then
+                echo "ref=release-261119" >> "$GITHUB_OUTPUT"
+                echo "build=true" >> "$GITHUB_OUTPUT"
+                echo "deploy=true" >> "$GITHUB_OUTPUT"
+                echo "promote=true" >> "$GITHUB_OUTPUT"
+              else
+                echo "build=false" >> "$GITHUB_OUTPUT"
+              fi ;;
+            workflow_dispatch)
+              echo "ref=${{ inputs.ref }}" >> "$GITHUB_OUTPUT"
+              echo "build=true" >> "$GITHUB_OUTPUT"
+              echo "deploy=${{ inputs.deploy }}" >> "$GITHUB_OUTPUT"
+              echo "promote=false" >> "$GITHUB_OUTPUT" ;;
+            *)
+              echo "ref=${{ github.sha }}" >> "$GITHUB_OUTPUT"
+              echo "build=true" >> "$GITHUB_OUTPUT"
+              echo "deploy=true" >> "$GITHUB_OUTPUT"
+              echo "promote=false" >> "$GITHUB_OUTPUT" ;;
+          esac
+
   build:
+    needs: gate
+    if: needs.gate.outputs.build == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.gate.outputs.ref }}
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -30,12 +85,15 @@ jobs:
         run: npm run build
         env:
           NEXT_PUBLIC_BASE_PATH: /${{ github.event.repository.name }}
+          # 세부페이지 로고·'홈' → 사이트 첫 화면(디자인 7안)
+          NEXT_PUBLIC_HOME_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: out
 
   deploy:
-    needs: build
+    needs: [gate, build]
+    if: needs.gate.outputs.deploy == 'true'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
@@ -43,3 +101,15 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+
+  # 예약 배포 후 main 을 배포한 브랜치로 맞춤(이후 main push 때 이전 화면으로 되돌아가지 않게)
+  promote:
+    needs: [gate, deploy]
+    if: needs.gate.outputs.promote == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.gate.outputs.ref }}
+          fetch-depth: 0
+      - run: git push origin HEAD:main
