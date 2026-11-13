@@ -2,9 +2,9 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { NAV } from "@/content/ko/common";
-import { href, type Concept } from "@/lib/site";
+import { homeUrl, href, type Concept } from "@/lib/site";
 import Logo from "@/components/shared/Logo";
 import { ChevronDown, CloseIcon, MenuIcon } from "@/components/shared/Icons";
 import { isActivePath, useMenuState } from "@/components/shared/useMenuState";
@@ -20,10 +20,24 @@ export default function HeaderA() {
   useMenuState(drawer, closeDrawer);
   const navRef = useRef<HTMLDivElement>(null);
   const sectionKey = pathname.split("/")[2] ?? "";
+  // 메인(PC·모바일): 화면 맨 위에서는 영상 위에 투명 메뉴, 스크롤하거나 메가 메뉴를 열면 흰 바탕
+  // 디자인 1·3안, 새 홈 미리보기(/concept-a/new-home/)도 메인과 같은 투명 메뉴
+  const home = [`/${C}`, `/${C}/design-1`, `/${C}/design-3`, `/${C}/new-home`].includes(pathname.replace(/\/$/, ""));
+  // 디자인 4·5안 미리보기: 흰 헤더가 첫 화면과 같은 면으로 이어지도록 스크롤 전에는 아래 구분선 없음
+  const plain = [`/${C}/design-4`, `/${C}/design-5`].includes(pathname.replace(/\/$/, ""));
+  const [atTop, setAtTop] = useState(true);
+  useEffect(() => {
+    if (!home && !plain) return;
+    const on = () => setAtTop(window.scrollY < 24);
+    on();
+    window.addEventListener("scroll", on, { passive: true });
+    return () => window.removeEventListener("scroll", on);
+  }, [home, plain]);
+  const overlay = home && atTop && !mega;
 
   return (
     <>
-    <header className="sticky top-0 z-50 border-b border-line bg-white">
+    <header className={`top-0 z-50 border-b transition-colors duration-300 ${home ? "fixed inset-x-0" : "sticky"} ${overlay ? "border-transparent bg-transparent" : plain && atTop && !mega ? "border-transparent bg-white" : "border-line bg-white"}`}>
       <div
         ref={navRef}
         onMouseLeave={() => setMega(false)}
@@ -32,9 +46,15 @@ export default function HeaderA() {
         }}
       >
         <div className="wrap flex h-[var(--header-h)] items-center justify-between gap-6">
-          <Link href={href(C)} className="shrink-0" aria-label="JP이노베이션 홈">
-            <Logo />
-          </Link>
+          {homeUrl(C) ? (
+            <a href={homeUrl(C)} className="shrink-0" aria-label="JP이노베이션 홈">
+              {overlay ? <Logo variant="white" className="h-8 w-auto lg:h-9" /> : <Logo className="h-8 w-auto lg:h-9" />}
+            </a>
+          ) : (
+            <Link href={href(C)} className="shrink-0" aria-label="JP이노베이션 홈">
+              {overlay ? <Logo variant="white" className="h-8 w-auto lg:h-9" /> : <Logo className="h-8 w-auto lg:h-9" />}
+            </Link>
+          )}
 
           <nav aria-label="주 메뉴" className="hidden h-full lg:block">
             <ul className="flex h-full">
@@ -47,8 +67,8 @@ export default function HeaderA() {
                       onMouseEnter={() => setMega(true)}
                       onFocus={() => setMega(true)}
                       aria-current={active ? "true" : undefined}
-                      className={`relative flex h-full w-[112px] items-center justify-center text-[15.5px] font-medium tracking-[-0.01em] transition-colors xl:w-[128px] ${
-                        active ? "text-ink" : "text-ink/70 hover:text-ink"
+                      className={`relative flex h-full w-[104px] items-center justify-center text-[15.5px] font-medium tracking-[-0.01em] transition-colors xl:w-[128px] ${
+                        overlay ? "text-white/90 hover:text-white" : active ? "text-ink hover:text-navy" : "text-ink/70 hover:text-navy"
                       }`}
                     >
                       {m.label}
@@ -63,13 +83,13 @@ export default function HeaderA() {
           <div className="flex items-center gap-2">
             <Link
               href={href(C, "support/inquiry")}
-              className="hidden h-10 items-center rounded-[2px] border border-ink/15 px-4 text-[13.5px] font-medium text-ink transition-colors hover:border-ink lg:inline-flex"
+              className={`hidden h-10 items-center whitespace-nowrap rounded-[2px] border px-4 text-[13.5px] font-medium transition-colors lg:inline-flex ${overlay ? "border-white/40 text-white hover:border-white" : "border-ink/15 text-ink hover:border-ink"}`}
             >
               사업⁠·⁠제품 문의
             </Link>
             <button
               type="button"
-              className="-mr-2 inline-flex size-11 items-center justify-center text-ink lg:hidden"
+              className={`-mr-2 inline-flex size-11 items-center justify-center lg:hidden ${overlay ? "text-white" : "text-ink"}`}
               aria-label="전체 메뉴 열기"
               aria-expanded={drawer}
               aria-controls="drawer-a"
@@ -95,14 +115,17 @@ export default function HeaderA() {
             </div>
             <ul className="flex">
               {NAV.map((m) => (
-                <li key={m.key} className="w-[112px] py-8 xl:w-[128px]">
+                <li key={m.key} className="w-[104px] py-8 xl:w-[128px]">
                   <ul className="space-y-1">
                     {(m.children ?? []).map((c) => (
                       <li key={c.key}>
+                        {/* 하위 링크: 칸 한 줄 전체가 클릭 영역. hover(마우스가 있는 기기에서만 — Tailwind 4 hover 변형)·키보드 포커스는
+                            옅은 블루 면 + 진한 네이비 글자, 현재 페이지는 네이비 글자·굵기(aria-current="page"). 굵기는 hover에서 바뀌지 않아 위치 고정 */}
                         <Link
                           href={href(C, c.path)}
                           onClick={() => setMega(false)}
-                          className={`block px-2 py-1.5 text-center text-[14px] transition-colors hover:text-ink ${
+                          aria-current={isActivePath(pathname, C, c.path) ? "page" : undefined}
+                          className={`block rounded-[2px] px-2 py-1.5 text-center text-[14px] transition-colors hover:bg-sky/10 hover:text-navy-700 focus-visible:bg-sky/10 focus-visible:text-navy-700 focus-visible:outline-2! focus-visible:outline-offset-[-2px]! focus-visible:outline-navy! ${
                             isActivePath(pathname, C, c.path) ? "font-medium text-navy" : "text-muted"
                           }`}
                         >

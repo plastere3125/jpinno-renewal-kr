@@ -2,7 +2,7 @@ import Link from "next/link";
 import { CHANNELS, COMPANY, NAV, UTIL_NAV } from "@/content/ko/common";
 import { href, type Concept } from "@/lib/site";
 import Logo from "./Logo";
-import { ArrowUpRight } from "./Icons";
+import { ChannelIcon } from "./Icons";
 
 export default function Footer({ concept }: { concept: Concept }) {
   const dark = concept === "concept-b";
@@ -16,12 +16,21 @@ export default function Footer({ concept }: { concept: Concept }) {
         <div className="flex flex-col gap-10 lg:flex-row lg:justify-between">
           <div className="max-w-[420px]">
             <Logo variant={dark ? "white" : "color"} className="h-8 w-auto" />
-            <ul className="mt-8 flex gap-6 text-[13.5px]">
+            <ul className="mt-8 flex gap-2.5" aria-label="공식 채널">
               {CHANNELS.map((ch) => (
                 <li key={ch.key}>
-                  <a href={ch.url} target="_blank" rel="noopener noreferrer" className={`inline-flex items-center gap-1 ${t.link}`}>
-                    {ch.short}
-                    <ArrowUpRight className="size-3" />
+                  <a
+                    href={ch.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title={ch.label}
+                    className={`group inline-flex size-11 items-center justify-center rounded-full border transition-colors duration-200 ${
+                      dark
+                        ? "border-white/20 text-white/80 [--channel-ink:var(--color-deep)] hover:border-white hover:bg-white hover:text-deep"
+                        : "border-line bg-white text-ink/75 [--channel-ink:#fff] hover:border-navy hover:bg-navy hover:text-white hover:[--channel-ink:var(--color-navy)]"
+                    }`}
+                  >
+                    <ChannelIcon k={ch.key} />
                     <span className="sr-only">{ch.label} (새 창)</span>
                   </a>
                 </li>

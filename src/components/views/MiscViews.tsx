@@ -7,7 +7,7 @@ import { SectionTitle } from "@/components/shared/PageShell";
 import { ButtonLink } from "@/components/shared/Widgets";
 import NewsList from "@/components/shared/NewsList";
 import InquiryForm from "@/components/shared/InquiryForm";
-import { ArrowUpRight, DocIcon, MailIcon, PhoneIcon } from "@/components/shared/Icons";
+import { ChannelIcon, DocIcon, MailIcon, PhoneIcon } from "@/components/shared/Icons";
 
 const sec = "wrap py-16 lg:py-24";
 const URL_RE = /^https?:\/\/\S+$/;
@@ -22,13 +22,25 @@ export function Channels({ concept }: { concept: Concept }) {
             href={ch.url}
             target="_blank"
             rel="noopener noreferrer"
-            className={`group flex items-center justify-between gap-4 py-5 sm:px-6 sm:first:pl-0 ${i === 0 ? "sm:pl-0" : ""} ${dark ? "text-white" : "text-ink"}`}
+            className={`group flex items-center justify-between gap-4 py-6 sm:px-8 sm:py-7 ${i === 0 ? "sm:pl-0" : ""} ${dark ? "text-white" : "text-ink"}`}
           >
-            <span>
-              <span className={`block text-[12px] font-medium uppercase tracking-[0.14em] ${dark ? "text-white/45" : "text-muted"}`}>{ch.short}</span>
-              <span className="mt-1 block text-[16px] font-medium">{ch.label}</span>
+            <span className="flex items-center gap-4">
+              {/* 채널 아이콘: 푸터와 같은 44px 원형·같은 아이콘, 줄 전체에 마우스를 올리면 채워짐 */}
+              <span
+                aria-hidden
+                className={`inline-flex size-11 shrink-0 items-center justify-center rounded-full border transition-colors duration-200 ${
+                  dark
+                    ? "border-white/20 text-white/80 [--channel-ink:var(--color-deep)] group-hover:border-white group-hover:bg-white group-hover:text-deep"
+                    : "border-line bg-white text-ink/75 [--channel-ink:#fff] group-hover:border-navy group-hover:bg-navy group-hover:text-white group-hover:[--channel-ink:var(--color-navy)]"
+                }`}
+              >
+                <ChannelIcon k={ch.key} />
+              </span>
+              <span>
+                <span className={`block text-[12px] font-medium uppercase tracking-[0.14em] ${dark ? "text-white/45" : "text-muted"}`}>{ch.short}</span>
+                <span className="mt-1 block text-[16px] font-medium">{ch.label}</span>
+              </span>
             </span>
-            <ArrowUpRight className={`size-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 ${dark ? "text-white/60" : "text-muted"}`} />
             <span className="sr-only">(새 창)</span>
           </a>
         </li>

@@ -28,6 +28,15 @@ export function asset(path: string) {
   return `${BASE}/${path}`;
 }
 
+/**
+ * 내부 공유용 메인 지정: 빌드·개발 서버 실행 시 NEXT_PUBLIC_HOME_URL 을 주면 concept-a 의 '홈'(헤더 로고·브레드크럼)이 그 주소로 감
+ * (예: 디자인 7안 정적 시안). 값이 없으면 기존처럼 /concept-a/ — 클라이언트 링크 빌드에는 넣지 않음
+ */
+export const HOME_URL = process.env.NEXT_PUBLIC_HOME_URL || "";
+export function homeUrl(concept: Concept) {
+  return concept === "concept-a" && HOME_URL ? HOME_URL : "";
+}
+
 /** concept 루트 기준 내부 링크 (next/link 가 basePath 를 붙이므로 여기선 붙이지 않음) */
 export function href(concept: Concept, path = "") {
   const p = path.replace(/^\/+|\/+$/g, "");

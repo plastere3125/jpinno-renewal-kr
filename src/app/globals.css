@@ -1,5 +1,44 @@
 @import "tailwindcss";
 
+/* 새 국문 홈(/concept-a/new-home/) 인트로: 히어로 무대가 한 번 열리는 프레이밍 변화(약 1초).
+   제목·버튼·헤더는 무대 밖 레이어라 첫 프레임부터 보이고 클릭·스크롤을 막지 않는다. 동작 줄이기면 정지 상태 */
+@keyframes nh-open {
+  from { clip-path: inset(18% 24% 18% 24% round 32px); }
+  to { clip-path: inset(0 0 0 0 round 0); }
+}
+@keyframes nh-settle {
+  from { transform: translateY(4%) scale(1.06); }
+  to { transform: translateY(0) scale(1); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .nh-stage { animation: nh-open 1.05s cubic-bezier(0.7, 0, 0.2, 1) 0.1s both; }
+  .nh-subject { animation: nh-settle 1.4s cubic-bezier(0.2, 0.7, 0.2, 1) 0.1s both; }
+}
+/* 첫 스크롤: 흰 시트가 올라오는 동안 히어로 문구가 살짝 물러난다(스크롤 위치에 연결, 1회 구간). 미지원 브라우저는 정지 */
+@keyframes nh-recede { to { opacity: 0.25; transform: translateY(-6%); } }
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    #nh-hero .nh-copy { animation: nh-recede linear both; animation-timeline: view(); animation-range: exit 0% exit 70%; }
+  }
+}
+
+/* 시안 A 메인 첫 화면: 영상 위 좌측 카피는 화면 비율 16:10 이상에서만(그보다 세로가 긴 화면은 영상 자막이 잘리거나 카피와 겹침).
+   21:9 초광폭은 가운데 정렬 칸이 자막 쪽으로 밀리므로 카피를 화면 왼쪽 여백 기준으로 둔다. */
+@custom-variant hero-wide (@media (min-width: 1024px) and (min-aspect-ratio: 8/5));
+@custom-variant hero-ultra (@media (min-width: 1024px) and (min-aspect-ratio: 21/10));
+/* 메인 디자인 1안: 세로가 짧은 노트북(1366×768·1536×864 등)에서 카피를 줄여 플랜트 굴뚝과 겹치지 않게 */
+@custom-variant pc-short {
+  @media (min-width: 1024px) and (max-height: 880px) {
+    @slot;
+  }
+  @media (min-width: 1024px) and (min-aspect-ratio: 16/9) and (max-height: 1000px) {
+    @slot;
+  }
+  @media (min-width: 1024px) and (min-aspect-ratio: 21/10) {
+    @slot;
+  }
+}
+
 /* CI 색상: 기존 jpinno.com 테마 변수(--main-color #2b2f84, --main-color2 #2ba8e0) 그대로 사용 */
 @theme {
   --color-navy: #2b2f84;

@@ -19,8 +19,26 @@ const subMobile = watch(MOBILE);
  * - 화면 폭에 따라 960/1920 파일 선택, 포스터를 먼저 표시
  * - 동작 줄이기 설정이면 자동재생하지 않고 재생 버튼만 제공
  * - 화면 밖으로 벗어나면 일시정지(배터리·데이터 절약)
+ * - posterMobile: 모바일 전용 영상(세로 크롭)과 같은 장면의 포스터
+ * - videoClassName: 화면 폭별 영상 초점(object-position), controlClassName: 재생 버튼 위치
  */
-export default function BackgroundVideo({ src, srcMobile, poster, label }: { src: string; srcMobile: string; poster: string; label: string }) {
+export default function BackgroundVideo({
+  src,
+  srcMobile,
+  poster,
+  posterMobile,
+  label,
+  videoClassName = "",
+  controlClassName = "bottom-4 right-4 lg:bottom-6 lg:right-6",
+}: {
+  src: string;
+  srcMobile: string;
+  poster: string;
+  posterMobile?: string;
+  label: string;
+  videoClassName?: string;
+  controlClassName?: string;
+}) {
   const ref = useRef<HTMLVideoElement>(null);
   const reduced = useSyncExternalStore(subReduced, () => window.matchMedia(REDUCED).matches, () => true);
   const mobile = useSyncExternalStore(subMobile, () => window.matchMedia(MOBILE).matches, () => false);
@@ -57,8 +75,8 @@ export default function BackgroundVideo({ src, srcMobile, poster, label }: { src
       <video
         key={mobile ? "m" : "d"}
         ref={ref}
-        className="absolute inset-0 size-full object-cover"
-        poster={poster}
+        className={`absolute inset-0 size-full object-cover ${videoClassName}`}
+        poster={mobile && posterMobile ? posterMobile : poster}
         muted
         loop
         playsInline
@@ -74,7 +92,7 @@ export default function BackgroundVideo({ src, srcMobile, poster, label }: { src
         type="button"
         onClick={toggle}
         aria-label={playing ? "배경 영상 일시정지" : "배경 영상 재생"}
-        className="absolute bottom-4 right-4 z-10 flex size-10 items-center justify-center rounded-full bg-black/35 text-white backdrop-blur-sm transition-colors hover:bg-black/55 lg:bottom-6 lg:right-6"
+        className={`absolute z-10 flex size-10 items-center justify-center rounded-full bg-black/35 text-white backdrop-blur-sm transition-colors hover:bg-black/55 ${controlClassName}`}
       >
         {playing ? <PauseIcon className="size-3.5" /> : <PlayIcon className="ml-0.5 size-3.5" />}
       </button>

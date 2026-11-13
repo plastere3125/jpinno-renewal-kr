@@ -11,7 +11,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ category: string }> }): Promise<Metadata> {
   const { category } = await params;
   const c = PRODUCT_CATEGORIES.find((x) => x.slug === category)!;
-  return { title: `${c.name} | 제품소개`, description: c.summary };
+  return { title: `${c.name} | 제품소개`, description: c.summary.replace(/\n/g, " ") };
 }
 
 export default async function Page({ params }: { params: Promise<{ concept: string; category: string }> }) {

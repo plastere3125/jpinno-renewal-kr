@@ -10,6 +10,11 @@ import { ButtonLink, NewsCard } from "@/components/shared/Widgets";
 import BackgroundVideo from "@/components/shared/BackgroundVideo";
 import { Channels } from "@/components/views/MiscViews";
 import ProductRailA from "./ProductRailA";
+import DesignOne from "./home/DesignOne";
+import DesignTwo from "./home/DesignTwo";
+import DesignThree from "./home/DesignThree";
+import DesignFour from "./home/DesignFour";
+import DesignFive from "./home/DesignFive";
 
 /**
  * 시안 A — Brand Film (밝은 톤)
@@ -38,7 +43,14 @@ function Head({ en, title, lead, more }: { en: string; title: React.ReactNode; l
   );
 }
 
-export default function HomeA() {
+/**
+ * design: 2026-11-12 메인 디자인 내부 시안 비교용(1안 /concept-a/design-1/, 2안 /design-2/, 3안 /design-3/).
+ * 없으면 현재 메인. 1안은 대표 비주얼·회사소개를, 2안은 대표 비주얼~대표 제품을,
+ * 3안은 대표 비주얼·회사소개·대표 제품을 시안 구성(첫 화면·공정 흐름·공정장비)으로 바꾼다.
+ * 4안(/design-4/)은 대표 비주얼·회사소개·대표 제품을 현장→수행실적→공정장비로 바꾸고, 04에서 수행실적 카드는 뺀다.
+ * 5안(/design-5/)은 4안 흐름에 상단 구도(네이비 면+사진 비대칭 오프닝, 바로 이어지는 대표 실적)만 바꾼 안.
+ */
+export default function HomeA({ design }: { design?: 1 | 2 | 3 | 4 | 5 }) {
   const patents = CERTIFICATIONS.filter((c) => c.id.startsWith("pt-")).length;
   const clients = CLIENT_GROUPS.reduce((n, g) => n + g.clients.length, 0);
   const stats = [
@@ -51,40 +63,65 @@ export default function HomeA() {
 
   return (
     <main id="main">
-      {/* 01 대표 비주얼: 헤드라인 + 브랜드 영상 */}
-      <section className="bg-white">
-        <div className="wrap pt-12 lg:pt-20">
-          <div className="grid gap-8 lg:grid-cols-12 lg:items-end">
-            <div className="lg:col-span-8">
-              <p className="eyebrow" data-reveal>
-                JP Innovation · Since 2008
-              </p>
-              <h1 className="t-display mt-6 text-[36px] text-ink sm:text-[52px] xl:text-[68px]" data-reveal style={d(80)}>
-                제약 바이오 및 이차전지,
-                <br />
-                석유 정밀화학 <span className="whitespace-nowrap text-navy">플랜트 전문기업</span>
-              </h1>
-            </div>
-            <div className="lg:col-span-4 lg:pb-3" data-reveal style={d(200)}>
-              <p className="t-lead">엔지니어링설계, 장비제작, 시공 및 사후관리까지 <span className="whitespace-nowrap">EPC(Turn-Key)</span> 사업을 수행합니다.</p>
-              <div className="mt-7 flex flex-wrap gap-2.5">
-                <ButtonLink to={href(C, "business/epc-engineering")}>사업분야</ButtonLink>
-                <ButtonLink to={href(C, "support/inquiry")} variant="outline">
-                  사업⁠·⁠제품 문의
-                </ButtonLink>
-              </div>
-            </div>
-          </div>
+      {design === 1 && <DesignOne />}
+      {design === 2 && <DesignTwo />}
+      {design === 3 && <DesignThree />}
+      {design === 4 && <DesignFour />}
+      {design === 5 && <DesignFive />}
+      {!design && (
+      <>
+      {/* 01 대표 비주얼 — 2026-11-12 재설계
+          클라이언트 회신(11-11): "상단 메뉴와 영상이 중간 카피로 나뉘어 임팩트가 없다"
+          → 메뉴·카피·영상을 한 화면으로 묶는다. 카피 전용 띠 없음.
+          - 영상: 브랜드 영상 중 반응기(원본 12.9초)~전자소재 클린룸(26.55초) 설비 구간만 반복(brand-loop-*.mp4).
+            반응기 초점이 맞는 13.4초에서 시작하도록 순서만 돌림(13.4→26.55 + 12.9→13.4, 이음새는 원래 연속 프레임).
+            첫 프레임·이음새에 자막과 전환 컷이 없고, 포스터는 첫 프레임과 같은 장면.
+          - 브랜드 영상 자막은 화면 가로 37~66%·세로 47~67%에 박혀 있다
+            → PC는 영상을 왼쪽 기준(object-left)으로 맞춰 자막을 오른쪽으로 보내고, 카피는 왼쪽에 둔다.
+              카피 폭(제목 최대 10.7em×52px)은 1024~2560px 폭에서 자막 시작 위치보다 왼쪽에서 끝난다.
+          - 위 배치는 화면 비율 16:10 이상(hero-wide, globals.css)에서만. 모바일·태블릿·4:3 화면은 영상(가운데 기준, 모바일은 세로 크롭본)이
+            위쪽을 차지하고 아래로 어두워지며 카피로 이어진다. 21:9 초광폭은 카피를 화면 왼쪽 여백 기준(hero-ultra). */}
+      <section id="hero-a" className="relative isolate flex h-svh min-h-[640px] flex-col justify-end overflow-hidden bg-deep text-white lg:min-h-[680px]">
+        <div className="absolute inset-x-0 top-0 h-[68%] hero-wide:h-full">
+          <BackgroundVideo
+            src={asset("video/brand-loop-1920.mp4")}
+            srcMobile={asset("video/brand-loop-m720.mp4")}
+            poster={img("video/brand-loop-poster.jpg")}
+            posterMobile={img("video/brand-loop-poster-m.jpg")}
+            label="JP이노베이션 브랜드 영상(설비 장면)"
+            videoClassName="object-center hero-wide:object-left"
+            controlClassName="right-4 top-[calc(var(--header-h)+12px)] hero-wide:bottom-8 hero-wide:right-8 hero-wide:top-auto"
+          />
+          {/* 메뉴 가독성 */}
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-black/55 to-transparent lg:h-48 lg:from-black/60" />
+          {/* 모바일: 영상 아래쪽이 카피 영역으로 끊김 없이 이어지게 */}
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-deep via-deep/60 to-transparent hero-wide:hidden" />
+          {/* PC: 카피가 있는 왼쪽만 어둡게(오른쪽 설비는 원래 밝기 유지) */}
+          <div className="pointer-events-none absolute inset-y-0 left-0 hidden w-[64%] bg-gradient-to-r from-black/70 via-black/35 to-transparent hero-wide:block" />
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 hidden h-48 bg-gradient-to-t from-black/45 to-transparent hero-wide:block" />
         </div>
-        <div className="mt-10 px-4 sm:px-6 lg:mt-14 lg:px-10" data-reveal style={d(260)}>
-          <div className="relative mx-auto aspect-[4/3] max-w-[1760px] overflow-hidden rounded-[8px] sm:aspect-[16/9] lg:aspect-[21/9]">
-            <BackgroundVideo src={asset("video/brand-film-1920.mp4")} srcMobile={asset("video/brand-film-960.mp4")} poster={img("video/brand-film-poster.jpg")} label="JP이노베이션 브랜드 영상" />
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/50 to-transparent" />
+
+        <div className="wrap relative pb-10 sm:pb-14 hero-wide:pb-[clamp(56px,11vh,120px)] hero-ultra:max-w-none! hero-ultra:px-[5vw]!">
+          <p className="eyebrow [--c-eyebrow:rgba(255,255,255,0.75)]">JP Innovation · Since 2008</p>
+          <h1 className="t-display mt-4 text-[30px] sm:text-[42px] lg:mt-5 lg:text-[52px]">
+            제약 바이오 및 이차전지,
+            <br />
+            석유 정밀화학
+            <br />
+            플랜트 전문기업
+          </h1>
+          <p className="mt-5 max-w-[30em] text-[15px] leading-relaxed text-white/80 sm:text-[17px] lg:mt-6">
+            엔지니어링설계, 장비제작, 시공 및 사후관리까지 <span className="whitespace-nowrap">EPC(Turn-Key)</span> 사업을 수행합니다.
+          </p>
+          <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-4 lg:mt-9">
+            <ButtonLink to={href(C, "business/epc-engineering")} variant="light">
+              사업분야 보기
+            </ButtonLink>
             <a
               href="https://www.youtube.com/watch?v=c_vkTfblDaE"
               target="_blank"
               rel="noopener noreferrer"
-              className="absolute bottom-4 left-4 z-10 inline-flex items-center gap-2 rounded-full bg-white/90 px-4 py-2 text-[13px] font-medium text-ink backdrop-blur-sm transition-colors hover:bg-white lg:bottom-6 lg:left-6"
+              className="inline-flex items-center gap-2 text-[14px] font-medium text-white/80 transition-colors hover:text-white"
             >
               소리와 함께 영상 보기 <ArrowUpRight className="size-3.5" />
               <span className="sr-only">(유튜브 새 창)</span>
@@ -94,7 +131,7 @@ export default function HomeA() {
       </section>
 
       {/* 회사 소개 문장 + 수치 */}
-      <section className="wrap py-24 lg:py-36">
+      <section className="wrap py-24 lg:py-32">
         <div className="grid gap-12 lg:grid-cols-12">
           <p className="eyebrow lg:col-span-3" data-reveal>
             About
@@ -128,6 +165,11 @@ export default function HomeA() {
         </ul>
       </section>
 
+      </>
+      )}
+
+      {design !== 2 && (
+      <>
       {/* 02 사업분야: 스크롤 시 겹쳐 올라오는 카드 */}
       <section className="bg-mist pb-24 pt-24 lg:pb-36 lg:pt-32">
         <div className="wrap">
@@ -162,7 +204,11 @@ export default function HomeA() {
           </ol>
         </div>
       </section>
+      </>
+      )}
 
+      {(design === undefined || design === 1) && (
+      <>
       {/* 03 대표 제품 */}
       <section className="overflow-hidden bg-[#eef0f4] py-24 lg:py-32">
         <div className="wrap">
@@ -170,6 +216,9 @@ export default function HomeA() {
         </div>
         <ProductRailA />
       </section>
+
+      </>
+      )}
 
       {/* 04 기술·수행실적 */}
       <section className="wrap py-24 lg:py-36">
@@ -210,6 +259,8 @@ export default function HomeA() {
           </ul>
         </div>
 
+        {design !== 4 && design !== 5 && (
+        <>
         <div className="mt-28 flex items-end justify-between gap-4 border-b border-line pb-5" data-reveal>
           <h3 className="text-[22px] font-semibold tracking-[-0.03em] text-ink lg:text-[26px]">주요 수행실적</h3>
           <Link href={href(C, "tech/projects")} className="link-arrow text-ink">
@@ -230,6 +281,8 @@ export default function HomeA() {
             </li>
           ))}
         </ul>
+        </>
+        )}
 
         <div className="mt-28" data-reveal>
           <div className="flex items-end justify-between gap-4">

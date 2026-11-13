@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { NAV } from "@/content/ko/common";
-import { href, img, type Concept } from "@/lib/site";
+import { homeUrl, href, img, type Concept } from "@/lib/site";
 import { ChevronRight } from "./Icons";
 import Lines from "./Lines";
 
@@ -62,7 +62,11 @@ export default function PageShell({ concept, section, current, title, trail = []
         {crumbs.map((c, i) => (
           <li key={i} className="flex items-center gap-1">
             {i > 0 && <ChevronRight className="size-3 opacity-60" />}
-            {i < crumbs.length - 1 && c.path !== undefined ? (
+            {i === 0 && homeUrl(concept) ? (
+              <a href={homeUrl(concept)} className={dark ? "hover:text-white" : "hover:text-navy"}>
+                {c.label}
+              </a>
+            ) : i < crumbs.length - 1 && c.path !== undefined ? (
               <Link href={href(concept, c.path)} className={dark ? "hover:text-white" : "hover:text-navy"}>
                 {c.label}
               </Link>
